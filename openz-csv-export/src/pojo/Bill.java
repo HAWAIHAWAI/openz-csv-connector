@@ -1,4 +1,4 @@
-package csv;
+package pojo;
 import java.math.BigDecimal;
 
 
@@ -8,7 +8,7 @@ import java.math.BigDecimal;
  * Buchungsbeleg
  *
  */
-public class Record {
+public class Bill {
 	
 	/**
 	 * Belegnummer

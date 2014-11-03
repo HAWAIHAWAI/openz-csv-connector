@@ -3,6 +3,8 @@ package csv;
 import java.util.ArrayList;
 import java.util.List;
 
+import pojo.Bill;
+
 /**
  * @author Christian Gläser
  * 
@@ -14,7 +16,7 @@ public class RecordHandler {
 	 * Der Name der CSV-Datei, sollte in Config-Datei festgelegt werden und dann beim Starten von OpenZ in
 	 */
 	private String fileName;
-	private List<Record> records;
+	private List<Bill> records;
 	
 	/**
 	 * RecordHandler - Dateirückgabe: records.csv 
@@ -27,7 +29,7 @@ public class RecordHandler {
 	 * @param filename Der Name der zurückzugebenden Datei
 	 */
 	public RecordHandler(String filename){
-		records = new ArrayList<Record>();
+		records = new ArrayList<Bill>();
 		//Read records;
 		setFileName(filename);
 		

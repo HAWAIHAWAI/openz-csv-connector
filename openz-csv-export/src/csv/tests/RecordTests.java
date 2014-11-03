@@ -14,7 +14,7 @@ import org.junit.Test;
 public class RecordTests {
 
 	@Test
-	public void test() {
+	public void dbconnectionTest() {
 		fail("Not yet implemented");
 	}
 
