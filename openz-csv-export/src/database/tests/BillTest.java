@@ -1,0 +1,30 @@
+package database.tests;
+
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import database.BillUtil;
+import pojo.Bill;
+
+
+public class BillTest {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@Test
+	public void getPlayer() {
+		Bill bill = BillUtil.getBill("96D07D1226434DB99675B9FD80344A44");
+		System.out.println(bill);
+		assertTrue(bill.getInvoiceNumber()=="96D07D1226434DB99675B9FD80344A44");
+		assertTrue(bill.getBookingText()=="Rechnungstext Beschreibung");
+	}
+}

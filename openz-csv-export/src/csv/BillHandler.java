@@ -11,7 +11,7 @@ import pojo.Bill;
  * Sucht Belege aus openz, erstellt Records (Belege) und speichert diese in einer csv-Datei ab, die über eine http-Schnittstelle ausgegeben wird.
  *
  */
-public class RecordHandler {
+public class BillHandler {
 	/**
 	 * Der Name der CSV-Datei, sollte in Config-Datei festgelegt werden und dann beim Starten von OpenZ in
 	 */
@@ -21,14 +21,14 @@ public class RecordHandler {
 	/**
 	 * RecordHandler - Dateirückgabe: records.csv 
 	 */
-	public RecordHandler(){
+	public BillHandler(){
 		this("records.csv");
 	}
 	
 	/**
 	 * @param filename Der Name der zurückzugebenden Datei
 	 */
-	public RecordHandler(String filename){
+	public BillHandler(String filename){
 		records = new ArrayList<Bill>();
 		//Read records;
 		setFileName(filename);
