@@ -1,6 +1,11 @@
 package pojo;
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 
 /**
  * @author Christian Gläser
@@ -8,39 +13,34 @@ import java.math.BigDecimal;
  * Buchungsbeleg
  *
  */
+@Entity
+@Table(name="c_invoice")
 public class Bill {
 	
 	/**
 	 * Belegnummer
 	 */
+	@Id
+	@Column(name="c_invoice_id")
 	String invoiceNumber;
+	
 	/**
 	 * Datum
 	 */
+	@Column(name="created")
 	String date;
+	
 	/**
 	 * Buchungstext
 	 */
+	@Column(name="description")
 	String bookingText;
+
+
 	/**
-	 * Sollkonto
+	 * Betrag
 	 */
-	String creditAccount;
-	/**
-	 * Sollkontoname
-	 */
-	String creditAccountName;
-	/**
-	 * Sollbetrag
-	 */
-	String debitAccount;
-	/**
-	 * Habenkontoname
-	 */
-	String debitAccountName;
-	/**
-	 * Habenbetrag
-	 */
-	BigDecimal debitAccountAmount;
+	@Column(name="grandtotal")
+	BigDecimal amount;
 
 }
