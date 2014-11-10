@@ -27,7 +27,7 @@ import javax.persistence.Table;
             		"WHERE b.invoiceNumber = :" + Bill.PARAM_ID ),
 	@NamedQuery(name = Bill.FIND_BILLS,
     query = "SELECT b " +
-            "FROM Bill b " )
+            "FROM Bill b" )
 })
 public class Bill implements Serializable{
 	
