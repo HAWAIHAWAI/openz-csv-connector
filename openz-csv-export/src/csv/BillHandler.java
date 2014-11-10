@@ -1,5 +1,6 @@
 package csv;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +29,11 @@ public class BillHandler {
 	
 	public BillHandler(String folder){
 		setFolder(folder);
-		flushCSV();
 	}
 
-	private void flushCSV() {
-		/*TODO: Write CSV-Files into Folder*/
-		/*
-		 * Wenn CSV noch nicht in Ordner gespeichert...generiere CSV ( if !file.exists()--->output)
-		 *
-		 * */
+	public void flushCSV() throws IOException {
+		CSVWriter csvWriter = new CSVWriter(getFolder(),"csv",";");
+		csvWriter.voidWriteFiles(getBills());
 	}
 
 	public String getFolder() {

@@ -35,15 +35,23 @@ public class UpdateCSVDirectory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      // Set response content type
-		
-		  //update folder
-		  String message = "Folder update successful";
+	      
+		// Set response content type
+		 //update folder
+		 
+		//update folder
+		String message = "";
+		try {
+			updateFolder();
+		    message = "Folder update successfulget";
+		} catch (IOException e) {
+			message = e.getLocalizedMessage();
+		}
 	      response.setContentType("text/html");
 
 	      // Actual logic goes here.
 	      PrintWriter out = response.getWriter();
-	      out.println("<h1>message</h1>");
+	      out.println("<h1>"+message+"</h1>");
 	      out.flush();
 	}
 
@@ -51,19 +59,26 @@ public class UpdateCSVDirectory extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      // Set response content type
+		// Set response content type
+		//update folder
+		 String message = "";
+		try {
+			updateFolder();
+		    message = "Folder update successfulpost";
+		} catch (IOException e) {
+			message = e.getLocalizedMessage();
+		}
 		
-		  //update folder
-		  String message = "Folder update successfulpost";
+
 	      response.setContentType("text/html");
 
 	      // Actual logic goes here.
 	      PrintWriter out = response.getWriter();
-	      out.println("<h1>message</h1>");
+	      out.println("<h1>"+message+"</h1>");
 	      out.flush();
 	}
 	
-	private void updateFolder(){
+	private void updateFolder() throws IOException{
 		billHandler.flushCSV();
 	}
 }

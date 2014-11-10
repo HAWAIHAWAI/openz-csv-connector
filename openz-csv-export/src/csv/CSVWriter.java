@@ -8,42 +8,54 @@ import java.util.List;
 
 import pojo.Bill;
 
+/**
+ * @author HAWAI
+ *
+ */
 public class CSVWriter {
   
-  private static BufferedWriter writer;
-  private static String directory;
-  private static String fileType;
-  private static String delimiter;
+
+  private BufferedWriter writer;
+  private String directory;
+  private String fileExtension;
+  private String delimiter;
   
-  public static void setDelimiter(String del){
+  public CSVWriter(String directory, String fileExtension, String delimiter){
+	  setDirectory(directory);
+	  setFileExtension(fileExtension);
+	  setDelimiter(delimiter);
+  }
+  
+  public void setDelimiter(String del){
     delimiter = del;
   }
   
-  public static String getDelimiter(){
+  public String getDelimiter(){
     return delimiter;
   }
   
-  public static void setFileType(String type){
-    fileType = type;
+  public void setFileExtension(String extension){
+    fileExtension = extension;
   }
   
-  public static String getFileType(){
-    return fileType;
+  public String getFileType(){
+    return fileExtension;
   }
   
-  public static void setDirectory(String path){
+  public void setDirectory(String path){
     directory = path;
   }
   
-  public static String getDirectoy(){
+  public String getDirectory(){
     return directory;
   }
   
-  public static void voidWriteFiles(List<Bill> listBills) throws IOException{
+  public void voidWriteFiles(List<Bill> listOfBills) throws IOException{
+	System.out.println("voidWriteFiles - list Of Bills" + listOfBills);
     Bill bill;
-    for(int i = 0; i < listBills.size(); i++){
-      bill = listBills.get(i);
-      writer = new BufferedWriter(new FileWriter(new File(directory + bill.getInvoiceNumber() + File.separator + fileType)));
+    for(int i = 0; i < listOfBills.size(); i++){
+      bill = listOfBills.get(i);
+      writer = new BufferedWriter(new FileWriter(new File(directory + "\"" + bill.getInvoiceNumber() + "." + fileExtension)));
       writer.write(bill.getInvoiceNumber() + delimiter 
           + bill.getDate() + delimiter 
           + bill.getBookingText() + delimiter 
