@@ -24,9 +24,18 @@ import javax.persistence.Table;
 	@NamedQuery(name = Bill.FIND_BILL_BY_ID,
             query = "SELECT b " +
 		            "FROM Bill b " +
-            		"WHERE b.invoiceNumber = :" + Bill.PARAM_ID )})
+            		"WHERE b.invoiceNumber = :" + Bill.PARAM_ID ),
+	@NamedQuery(name = Bill.FIND_BILLS,
+    query = "SELECT b " +
+            "FROM Bill b " )
+})
 public class Bill implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3112757207106932963L;
+
 	/*** Belegnummer */
 	String invoiceNumber;
 	
@@ -47,6 +56,7 @@ public class Bill implements Serializable{
 	
 	//QUERY NAMES
 	public static final String FIND_BILL_BY_ID = "findBillByID";
+	public static final String FIND_BILLS = "findBills";
 	
 	@Id
 	@Column(name=PARAM_ID)
@@ -82,5 +92,11 @@ public class Bill implements Serializable{
 	}
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	@Override
+	public String toString() {
+		return "Bill [invoiceNumber=" + invoiceNumber + ", date=" + date
+				+ ", bookingText=" + bookingText + ", amount=" + amount + "]";
 	}
 }
