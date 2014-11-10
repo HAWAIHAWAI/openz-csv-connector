@@ -1,5 +1,7 @@
 package database;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
@@ -14,6 +16,13 @@ public class BillUtil {
 		query.setParameter(Bill.PARAM_ID, billID);
 		
 		return query.getSingleResult();
+	}
+	
+	public static List<Bill> getAllBills() {
+		EntityManager em = EntityManagerUtil.getEntityManager();
+		TypedQuery<Bill> query = em.createNamedQuery(Bill.FIND_BILLS, Bill.class);
+		System.out.println("Query" + query);
+		return query.getResultList();
 	}
 
 }

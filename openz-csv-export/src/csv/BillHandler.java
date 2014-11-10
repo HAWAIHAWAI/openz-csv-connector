@@ -3,6 +3,7 @@ package csv;
 import java.util.ArrayList;
 import java.util.List;
 
+import database.BillUtil;
 import pojo.Bill;
 
 /**
@@ -15,31 +16,39 @@ public class BillHandler {
 	/**
 	 * Der Name der CSV-Datei, sollte in Config-Datei festgelegt werden und dann beim Starten von OpenZ in
 	 */
-	private String fileName;
-	private List<Bill> records;
+	private String folder;
 	
 	/**
 	 * RecordHandler - Dateirückgabe: records.csv 
 	 */
 	public BillHandler(){
-		this("records.csv");
+		this("outputFiles");
 	}
 	
-	/**
-	 * @param filename Der Name der zurückzugebenden Datei
-	 */
-	public BillHandler(String filename){
-		records = new ArrayList<Bill>();
-		//Read records;
-		setFileName(filename);
-		
+	
+	public BillHandler(String folder){
+		setFolder(folder);
+		flushCSV();
 	}
 
-	public String getFileName() {
-		return this.fileName;
+	private void flushCSV() {
+		/*TODO: Write CSV-Files into Folder*/
+		/*
+		 * Wenn CSV noch nicht in Ordner gespeichert...generiere CSV ( if !file.exists()--->output)
+		 *
+		 * */
 	}
 
-	public void setFileName(String fileName) {
-		fileName = this.fileName;
-	} 
+	public String getFolder() {
+		return folder;
+	}
+
+	public void setFolder(String folder) {
+		this.folder = folder;
+	}
+
+	public static List<Bill> getBills() {
+		return BillUtil.getAllBills();
+	}
+	
 }
