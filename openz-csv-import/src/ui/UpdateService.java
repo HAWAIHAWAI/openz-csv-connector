@@ -1,5 +1,7 @@
 package ui;
 
+import global.Settings;
+
 import java.awt.AWTException;
 import java.awt.Image;
 import java.awt.MenuItem;
@@ -11,11 +13,43 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+import com.thoughtworks.xstream.XStream;
 
 
 public class UpdateService {
+	
+	Settings settings;
+	
+	/**
+	 * @return
+	 * @throws IOException When file can't be read
+	 */
+	public void settingsInstantiation() throws IOException{
+		BufferedReader reader = new BufferedReader(new FileReader("settings.xml"));
+		
+		StringBuilder fileAsString = new StringBuilder();
+	    String line;
+	    while((line = reader.readLine()) != null) {
+	       fileAsString.append(line);
+	    }
+		
+		XStream xstream = new XStream();
+		xstream.alias("settings", Settings.class);
+		settings =  (Settings)xstream.fromXML(fileAsString.toString());	
+		System.out.println("Settings: FolderLocation: " + settings.getFolderLocation() + ", url: " + settings.getURL() + ", updateInterval in seconds: " + settings.getUpdateInterval() );
+	}
 
-	public UpdateService(){
+	/**
+	 * @throws IOException When settings file can't be read
+	 */
+	public UpdateService() throws IOException{
+		settingsInstantiation();
         
         final TrayIcon trayIcon;
 
@@ -90,7 +124,12 @@ public class UpdateService {
      */
     public static void main(String[] args)
     {
-        UpdateService main = new UpdateService();
+        try {
+			UpdateService main = new UpdateService();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
 }//end of class

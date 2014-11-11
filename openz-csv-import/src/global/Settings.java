@@ -6,21 +6,24 @@ package global;
  */
 public class Settings {
 	
-	private String storageLocation;
+	private String url;
 	private String folderLocation;
 	private Integer updateInterval;
 	
+	/**
+	 * @return the location of the folder where files should be unpacked
+	 */
 	public String getFolderLocation() {
 		return folderLocation;
 	}
 	public void setFolderLocation(String folderLocation) {
 		this.folderLocation = folderLocation;
 	}
-	public String getStorageLocation() {
-		return storageLocation;
+	public String getURL() {
+		return url;
 	}
-	public void setStorageLocation(String storageLocation) {
-		this.storageLocation = storageLocation;
+	public void setURL(String url) {
+		this.url = url;
 	}
 	public Integer getUpdateInterval() {
 		return updateInterval;

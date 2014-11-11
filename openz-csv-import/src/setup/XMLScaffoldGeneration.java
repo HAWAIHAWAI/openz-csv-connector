@@ -19,7 +19,7 @@ public class XMLScaffoldGeneration {
 	public String generateXMLScaffold(){
 		Settings settings = new Settings();
 		settings.setFolderLocation("folderLocation");
-		settings.setStorageLocation("storageLocation");
+		settings.setURL("url");
 		settings.setUpdateInterval(15);
         XStream xStream = new XStream(new DomDriver());
         xStream.alias("settings", Settings.class);
