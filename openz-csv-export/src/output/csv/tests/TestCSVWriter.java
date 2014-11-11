@@ -1,10 +1,11 @@
-package csv.tests;
+package output.csv.tests;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -17,8 +18,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import output.BillHandler;
+import output.csv.CSVWriter;
 import pojo.Bill;
-import csv.CSVWriter;
 
 public class TestCSVWriter {
   /**
@@ -43,15 +45,16 @@ public class TestCSVWriter {
    * auf null-Attribute geprueft und dann erfolgen die Pruefungen der Setter und Getter.
    * Es wird zuerst ein Wert mittels Setter gesetzt und dieser wird dann mittels des
    * Getters abgerufen und mit dem erwarteten Wert verglichen.
+ * @throws IOException Verzeichnis kann nicht angelegt werden
    */
   @Test
-  public void testGetterAndSetter() {
+  public void testGetterAndSetter() throws IOException {
 
     // Prüft, ob ein CSVWriter-Objekt erstellt wurde mit null-Belegung
     writer = new CSVWriter(null,false, null, null);
     assertNotNull(writer);
     assertNull(writer.getCSVDelimiter());
-    assertNull(writer.getDirectory());
+    //assertEquals(writer.getCurrentDirectory()+"/" + null,writer.getDirectory());
     assertNull(writer.getFileExtension());
 
     // CSVDelimiter
@@ -61,7 +64,7 @@ public class TestCSVWriter {
     // Directory
     writer.setDirectory("TMP", false);
     File file = new File("TMP");
-    assertEquals("TMP", writer.getDirectory());
+    assertEquals(writer.getCurrentDirectory() + "\\" + "TMP", writer.getDirectory());
 
     /*
      * Testet, ob das Verzeichnis als Dateisystem vorhanden ist. -> Nein, da es nicht vorhanden ist
@@ -77,7 +80,7 @@ public class TestCSVWriter {
      */
     writer.setDirectory("beta", true); // Verzeichnis wird im Projektordner erstellt
     file = new File("beta");
-    assertEquals("beta", writer.getDirectory());
+    assertEquals(writer.getCurrentDirectory() + "\\" + "beta", writer.getDirectory());
     assertTrue(file.exists());
     assertTrue(file.isDirectory());
 
@@ -96,11 +99,12 @@ public class TestCSVWriter {
    * Der Konstruktoraufruf ist an sich eine Weiterleitung mit true
    * an den Konstruktor, bei dem man die moegliche Erstellung
    * als Argument setzen kann (der naechste Test).
+ * @throws IOException Verzeichnis kann nicht angelegt werden
    */
   @Test
-  public void testCSVWriterKonstruktor() {
+  public void testCSVWriterKonstruktor() throws IOException {
     writer = new CSVWriter("abc", "gif", "++");
-    assertEquals("abc", writer.getDirectory());
+    assertEquals(writer.getCurrentDirectory() + "\\" + "abc", writer.getDirectory());
     assertEquals("gif", writer.getFileExtension());
     assertEquals("++", writer.getCSVDelimiter());
     File file = new File("abc");
@@ -112,11 +116,12 @@ public class TestCSVWriter {
    * Testet den Konstruktor mit der Moeglichkeit, dass Verzeichnis
    * zu erstellen bei Nichtvorhandensein. Hier wird false
    * als Argument uebergeben, da kein Verzeichnis erstellt werden soll.
+ * @throws IOException Verzeichnis kann nicht angelegt werden
    */
   @Test
-  public void testCSVWriterStringBooleanStringString() {
+  public void testCSVWriterStringBooleanStringString() throws IOException {
     writer = new CSVWriter("ccc",false, "la", "*");
-    assertEquals("ccc", writer.getDirectory());
+    assertEquals(writer.getCurrentDirectory() + "\\" + "ccc", writer.getDirectory());
     assertEquals("la", writer.getFileExtension());
     assertEquals("*", writer.getCSVDelimiter());
     File file = new File("c");
@@ -126,9 +131,10 @@ public class TestCSVWriter {
 
   /**
    * Testet, ob eine einzelne Rechnung korrekt erstellt wird
+ * @throws IOException 
    */
   @Test
-  public void testCreateBillAsCSV() {
+  public void testCreateBillAsCSV() throws IOException {
     String dir = "dir";
     String ext = "csv";
     String del = ";";
@@ -173,9 +179,10 @@ public class TestCSVWriter {
 
   /**
    * Testet eine Liste mit Rechnungen.
+ * @throws IOException Verzeichnis kann nicht angelegt werden
    */
   @Test
-  public void testCreateBillsAsCSV() {
+  public void testCreateBillsAsCSV() throws IOException {
     String dir = "DIR";
     String ext = "csv";
     String del = ";";
@@ -255,6 +262,29 @@ public class TestCSVWriter {
     
     
   }
+  
+  
+	@Test
+	public void writeCSVFiles() throws IOException{
+		CSVWriter csvWriter = new CSVWriter();
+		try {
+			csvWriter.createBillsAsCSV(BillHandler.getBills());
+		} catch (IOException e) {
+			System.out.println(e);
+			fail();
+		}
+	}
+	
+	@Test
+	public void openZip() throws IOException{
+		CSVWriter csvWriter = new CSVWriter();
+		try {
+			csvWriter.createBillsAsCSV(BillHandler.getBills());
+		} catch (IOException e) {
+			System.out.println(e);
+			fail();
+		}
+	}
 
 
 }

@@ -35,7 +35,7 @@ public class BillHandler {
 
 	public File flushCSV() throws IOException {
 		CSVWriter csvWriter = new CSVWriter(getFolder(),"csv",";");
-		csvWriter.voidWriteFiles(getBills());
+		csvWriter.createBillsAsCSV(getBills());
 		return csvWriter.getZip();
 	}
 

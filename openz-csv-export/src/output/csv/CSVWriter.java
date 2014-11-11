@@ -16,107 +16,178 @@ import pojo.Bill;
  */
 public class CSVWriter {
 
-	private BufferedWriter writer;
-	private File currentDirectory;
-	private File storageDirectory;
-	private String zipFilePath;
+  /**
+   * Fuer das Schreiben von Text in eine Datei.
+   */
+  private BufferedWriter writer;
+  
+  
+  /**
+ * Das Programmverzeichnis, in dem die Applikation gerade ausgeführt wird
+ */
+private File currentDirectory;
 
-	private String fileExtension;
-	private String delimiter;
+/**
+   * Das Verzeichnis fuer die Dateien.
+   */
+  private File storageDirectory;
+  
+  private String zipFilePath;
+  
+  /**
+   * Dateiendung
+   */
+  private String fileExtension;
+  
+  /**
+   * Trennzeichen zwischen den einzelnen Inhalten in der CSV-Datei.
+   */
+  private String csvDelimiter;
 
-	public CSVWriter() {
+  
+	/**
+	 * @throws IOException Wenn Verzeichnis nicht angelegt werden kann
+	 */
+	public CSVWriter() throws IOException {
 		this("CSVfiles", "csv", ";");
 	}
-
-	/**
-	 * @param directory
-	 *            The subdirectory relative to the current application path
-	 * @param fileExtension
-	 *            The file extension of the files
-	 * @param delimiter
-	 *            The csv delimiter to be used
-	 */
-	public CSVWriter(String directory, String fileExtension, String delimiter){
-	  setDirectory(new File(directory));
-	  setFileExtension(fileExtension);
-	  setDelimiter(delimiter);
-	  try {
-		createDirectory();
-	} catch (IOException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		System.err.println("Error while trying to create directory for csv files");
-	}
-	  String zipfilepath = currentDirectory + "/" + "bills.zip";
-	  System.out.println("Zipfilepath: " + zipfilepath);
-	  setZipFilePath(zipfilepath);
+  /**
+   * Konstruktor, der das Verzeichnis erstellt, falls es nicht vorhanden ist.
+   * @param directory Verzeichnis, in dem die Dateien erstellt werden.
+   * @param fileExtension Endung der Datei.
+   * @param csvDelimiter Trennzeichen zwischen den einzelnen Inhalten in der CSV-Datei.
+ * @throws IOException Verzeichnis kann nicht angelegt werden
+   */
+  public CSVWriter(String directory, String fileExtension, String csvDelimiter) throws IOException {
+    this(directory, true, fileExtension, csvDelimiter);
   }
 
-	public void setDelimiter(String del) {
-		delimiter = del;
-	}
+  /**
+   * Konstruktor mit Wahlmoeglichkeit, ob das Zielverzeichnis angelegt wird, falls
+   * es nicht vorhanden ist. Hier ist zu beachten, dass wenn das Verzeichnis nicht
+   * existent ist, die Methoden fuer das Erstellen der Dateien eine IO-Exceptionw werfen!
+   * @param directory Verzeichnis, in dem die Dateien erstellt werden - relativ zum Programmverzeichnis
+   * @param createDir Angabe, ob ein Verzeichnis erstellt werden soll, falls nicht existent.
+   * @param fileExtension Endung der Datei.
+   * @param csvDelimiter Trennzeichen zwischen den einzelnen Inhalten in der CSV-Datei.
+ * @throws IOException Verzeichnis kann nicht angelegt werden
+   */
+  public CSVWriter(String directory, boolean createDir, String fileExtension, String csvDelimiter) throws IOException {
+    setDirectory(directory, createDir);
+    setFileExtension(fileExtension);
+    setCSVDelimiter(csvDelimiter);
+    String zipfilepath = currentDirectory + "/" + "bills.zip";
+	//System.out.println("Zipfilepath: " + zipfilepath);
+    setZipFilePath(zipfilepath);
+  }
 
-	public String getDelimiter() {
-		return delimiter;
-	}
+  /**
+   * Setzt das Trennzeichen zwischen den Inhalten der Datei.
+   * @param del Trennzeichen zwischen Inhalten.
+   */
+  public void setCSVDelimiter(String del) {
+    csvDelimiter = del;
+  }
 
-	public void setFileExtension(String extension) {
-		fileExtension = extension;
-	}
+  /**
+   * Liefert das aktuell verwendete Trennzeichen.
+   * @return Aktuelles Trennzeichen.
+   */
+  public String getCSVDelimiter() {
+    return csvDelimiter;
+  }
 
-	public String getFileType() {
-		return fileExtension;
-	}
+  /**
+   * Setzt die Endung der zu erstellenden Dateien.
+   * @param extension Endung der zu erstellenden Dateien.
+   */
+  public void setFileExtension(String extension) {
+    fileExtension = extension;
+  }
 
-	public void setDirectory(File path) {
-		storageDirectory = path;
-	}
+  
+  /**
+   * Liefert den aktuellen Dateityp.
+   * @return Aktueller Dateityp.
+   */
+  public String getFileExtension() {
+    return fileExtension;
+  }
 
-	public File getDirectory() {
-		return storageDirectory;
-	}
+  /**
+   * Setzt das zu verwendende Verzeichnis auf den uebergebenen Pfad.
+   * Es besteht die Moeglichkeit mittels "createIfNonexistent" ein Verzeichnis
+   * anzulegen, falls es nicht vorhanden ist und der Anwender es will.
+   * Das Verzeichnis wird waehrend des Ausfuehrens dieser Methode erstellt.
+   * @param path Pfad des zu verwendenden Verzeichnisses.
+   * @param createIfNonexistent True, wenn das Verzeichnis erzeugt werden soll, falls
+   * es noch nicht vorhanden ist. Andernfalls false.
+ * @throws IOException Wenn aktuelles Verzeichnis nicht gefunden werden kann
+   */
+  public void setDirectory(String path, boolean createIfNonexistent) throws IOException {
+	  String currentDir = new File(".").getCanonicalPath();
+      this.currentDirectory = new File(currentDir);
+      storageDirectory = new File(currentDirectory + "/" + path);
+	  if (createIfNonexistent) {  
+      storageDirectory.mkdirs();
+      }
+  }
 
-	public void createDirectory() throws IOException {
-		String current = "";
-		current = new java.io.File(".").getCanonicalPath();
-		this.currentDirectory = new File(current);
+  /**
+   * Liefert das aktuell verwendete Verzeichnis.
+   * @return Pfad des aktuell verwendeten Verzeichnisses
+ * @throws IOException Wenn Pfad noch nicht gesetzt
+   */
+  public String getDirectory() throws IOException {
+    return storageDirectory.getCanonicalPath();
+  }
 
-		File directory = new File(current + "/" + this.getDirectory());
-		System.out.println(directory);
-		if (!directory.exists()) {
-			directory.mkdir();
-		}
+  /**
+   * Schreibt eine Liste von Bills ("Rechnungen") in das vorher angegebene Verzeichnis.
+   * <br>
+   * Fuer weitere Informationen {@link #createBillAsCSV(Bill)}.
+   * @param listOfBills Liste mit Bills("Rechnungen").
+   * @throws IOException Fehler beim Dateisystem (Y_Y)
+   * @see {@link #createBillAsCSV(Bill)}
+   */
+  public void createBillsAsCSV(List<Bill> listOfBills) throws IOException {
+    System.out.println("voidWriteFiles - list Of Bills" + listOfBills);
+    for (int i = 0; i < listOfBills.size(); i++) {
+      createBillAsCSV(listOfBills.get(i));
+    }
+    zipDirectory();
+  }
 
-	}
+  /**
+   * Schreibt eine einzelne Rechnung in das vorher angegebene Verzeichnis.
+   * Jede Bill ("Rechnung") erhaelt eine Datei, wobei der Dateiname der
+   * Rechnungsnummer entspricht. Die Datei enthaelt hierbei die jeweilige Rechnungsnummer,
+   * das Rechnungsdatum, den dazugehoerige Buchungstext sowie den Rechnungsbetrag.
+   * <br>
+   * Ist die Rechnung schon vorhanden, so wird sie <i> nicht </i> nochmal erstellt.
+   * @param bill Die Bill ("Rechnung"), die als CSV-Datei erstellt werden soll.
+   * @throws IOException Fehler beim Dateisystem (Y_Y)
+   */
+  public void createBillAsCSV(Bill bill) throws IOException {
+    File csvFile = new File(storageDirectory + File.separator + bill.getInvoiceNumber() + "." + fileExtension);
+    if (!csvFile.exists()) {
+      writer = new BufferedWriter(new FileWriter(csvFile));
+      writer.write(bill.getInvoiceNumber() + csvDelimiter + bill.getDate() + csvDelimiter + bill.getBookingText() + csvDelimiter
+      // Sollkonto
+      + csvDelimiter
+      // Sollkontoname
+      + csvDelimiter + bill.getAmount() + csvDelimiter
+      // Habenkonto
+      + csvDelimiter
+      // Habenkontoname
+      + csvDelimiter + bill.getAmount());
+      writer.flush();
+      writer.close();
+    }
 
-	public void voidWriteFiles(List<Bill> listOfBills) throws IOException {
-		System.out.println("voidWriteFiles - list Of Bills" + listOfBills);
-		Bill bill;
-		for (int i = 0; i < listOfBills.size(); i++) {
-			bill = listOfBills.get(i);
-			String filename = storageDirectory + "/" + bill.getInvoiceNumber()
-					+ "." + fileExtension;
-			System.out.println("Added file " + filename);
-			writer = new BufferedWriter(new FileWriter(new File(filename)));
-			writer.write(bill.getInvoiceNumber() + delimiter + bill.getDate()
-					+ delimiter + bill.getBookingText() + delimiter
-					// Sollkonto
-					+ delimiter
-					// Sollkontoname
-					+ delimiter + bill.getAmount() + delimiter
-					// Habenkonto
-					+ delimiter
-					// Habenkontoname
-					+ delimiter + bill.getAmount());
-			// Added flush
-			writer.flush();
-		}
-		zipDirectory();
-	}
+  }
+  
 
-	/**
- * 
- */
 	private void zipDirectory() {
 		ZipUtil.pack(storageDirectory, new File("bills.zip"));
 	}
@@ -131,6 +202,14 @@ public class CSVWriter {
 
 	public File getZip() {
 		return new File(zipFilePath);
-
 	}
+	
+	public File getCurrentDirectory() {
+			return currentDirectory;
+	}
+	
+	public void setCurrentDirectory(File currentDirectory) {
+			this.currentDirectory = currentDirectory;
+	}
+  
 }
