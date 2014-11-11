@@ -15,8 +15,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import common.FileOperations;
 
 import output.BillHandler;
 import output.csv.CSVWriter;
@@ -64,7 +67,7 @@ public class TestCSVWriter {
     // Directory
     writer.setDirectory("TMP", false);
     File file = new File("TMP");
-    assertEquals(writer.getCurrentDirectory() + "\\" + "TMP", writer.getDirectory());
+    assertEquals(FileOperations.getProgramDirectory() + "\\" + "TMP", writer.getDirectory());
 
     /*
      * Testet, ob das Verzeichnis als Dateisystem vorhanden ist. -> Nein, da es nicht vorhanden ist
@@ -80,7 +83,7 @@ public class TestCSVWriter {
      */
     writer.setDirectory("beta", true); // Verzeichnis wird im Projektordner erstellt
     file = new File("beta");
-    assertEquals(writer.getCurrentDirectory() + "\\" + "beta", writer.getDirectory());
+    assertEquals(FileOperations.getProgramDirectory() + "\\" + "beta", writer.getDirectory());
     assertTrue(file.exists());
     assertTrue(file.isDirectory());
 
@@ -104,7 +107,7 @@ public class TestCSVWriter {
   @Test
   public void testCSVWriterKonstruktor() throws IOException {
     writer = new CSVWriter("abc", "gif", "++");
-    assertEquals(writer.getCurrentDirectory() + "\\" + "abc", writer.getDirectory());
+    assertEquals(FileOperations.getProgramDirectory() + "\\" + "abc", writer.getDirectory());
     assertEquals("gif", writer.getFileExtension());
     assertEquals("++", writer.getCSVDelimiter());
     File file = new File("abc");
@@ -121,7 +124,7 @@ public class TestCSVWriter {
   @Test
   public void testCSVWriterStringBooleanStringString() throws IOException {
     writer = new CSVWriter("ccc",false, "la", "*");
-    assertEquals(writer.getCurrentDirectory() + "\\" + "ccc", writer.getDirectory());
+    assertEquals(FileOperations.getProgramDirectory() + "\\" + "ccc", writer.getDirectory());
     assertEquals("la", writer.getFileExtension());
     assertEquals("*", writer.getCSVDelimiter());
     File file = new File("c");
@@ -266,14 +269,21 @@ public class TestCSVWriter {
   
 	@Test
 	public void writeCSVFiles() throws IOException{
-		CSVWriter csvWriter = new CSVWriter();
 		try {
+			CSVWriter csvWriter = new CSVWriter();
 			csvWriter.createBillsAsCSV(BillHandler.getBills());
-		} catch (IOException e) {
-			System.out.println(e);
-			fail();
+			
+			// Entferne Verzeichnis samt Inhalt
+		      File fDir = new File(csvWriter.getDirectory());
+		      for(String s : fDir.list()){
+		        new File(csvWriter.getDirectory() + File.separator + s).delete();
+		      }
+		      fDir.delete();
+		    } catch (IOException e) {
+		      // TODO Auto-generated catch block
+		      e.printStackTrace();
+		    }	
 		}
-	}
 	
 	@Test
 	public void openZip() throws IOException{
@@ -285,6 +295,4 @@ public class TestCSVWriter {
 			fail();
 		}
 	}
-
-
 }

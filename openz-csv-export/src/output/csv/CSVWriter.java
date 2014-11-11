@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.zeroturnaround.zip.ZipUtil;
 
+import common.FileOperations;
+
 import pojo.Bill;
 
 /**
@@ -21,11 +23,6 @@ public class CSVWriter {
    */
   private BufferedWriter writer;
   
-  
-  /**
- * Das Programmverzeichnis, in dem die Applikation gerade ausgeführt wird
- */
-private File currentDirectory;
 
 /**
    * Das Verzeichnis fuer die Dateien.
@@ -76,7 +73,7 @@ private File currentDirectory;
     setDirectory(directory, createDir);
     setFileExtension(fileExtension);
     setCSVDelimiter(csvDelimiter);
-    String zipfilepath = currentDirectory + "/" + "bills.zip";
+    String zipfilepath = FileOperations.getProgramDirectory() + "/" + "bills.zip";
 	//System.out.println("Zipfilepath: " + zipfilepath);
     setZipFilePath(zipfilepath);
   }
@@ -125,9 +122,7 @@ private File currentDirectory;
  * @throws IOException Wenn aktuelles Verzeichnis nicht gefunden werden kann
    */
   public void setDirectory(String path, boolean createIfNonexistent) throws IOException {
-	  String currentDir = new File(".").getCanonicalPath();
-      this.currentDirectory = new File(currentDir);
-      storageDirectory = new File(currentDirectory + "/" + path);
+	  storageDirectory = new File(FileOperations.getProgramDirectory() + "/" + path);
 	  if (createIfNonexistent) {  
       storageDirectory.mkdirs();
       }
@@ -203,13 +198,4 @@ private File currentDirectory;
 	public File getZip() {
 		return new File(zipFilePath);
 	}
-	
-	public File getCurrentDirectory() {
-			return currentDirectory;
-	}
-	
-	public void setCurrentDirectory(File currentDirectory) {
-			this.currentDirectory = currentDirectory;
-	}
-  
 }
