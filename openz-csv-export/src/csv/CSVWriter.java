@@ -96,6 +96,7 @@ public class CSVWriter {
    * Setzt das zu verwendende Verzeichnis auf den uebergebenen Pfad.
    * Es besteht die Moeglichkeit mittels "createIfNonexistent" ein Verzeichnis
    * anzulegen, falls es nicht vorhanden ist und der Anwender es will.
+   * Das Verzeichnis wird waehrend des Ausfuehrens dieser Methode erstellt.
    * @param path Pfad des zu verwendenden Verzeichnisses.
    * @param createIfNonexistent True, wenn das Verzeichnis erzeugt werden soll, falls
    * es noch nicht vorhanden ist. Andernfalls false.
@@ -155,6 +156,7 @@ public class CSVWriter {
       // Habenkontoname
       + csvDelimiter + bill.getAmount());
       writer.flush();
+      writer.close();
     }
 
   }
