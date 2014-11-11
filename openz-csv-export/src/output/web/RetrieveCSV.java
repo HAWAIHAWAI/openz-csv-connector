@@ -1,21 +1,24 @@
-package web;
+package output.web;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import csv.BillHandler;
+import output.BillHandler;
 
 /**
  * Servlet implementation class UpdateCSVDirectory
  */
-@WebServlet(description = "Update files in the CSV directory", urlPatterns = { "/UpdateCSVDirectory" })
-public class UpdateCSVDirectory extends HttpServlet {
+@WebServlet(description = "Update files in the CSV directory", urlPatterns = { "/Bills.zip" })
+public class RetrieveCSV extends HttpServlet {
 	
 	BillHandler billHandler;
 
@@ -27,7 +30,7 @@ public class UpdateCSVDirectory extends HttpServlet {
 	/**
      * Default constructor. 
      */
-    public UpdateCSVDirectory() {
+    public RetrieveCSV() {
     	billHandler = new BillHandler();
     }
 
@@ -35,7 +38,7 @@ public class UpdateCSVDirectory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	      
+	     System.out.println("Get executed");
 		// Set response content type
 		 //update folder
 		 
@@ -43,42 +46,37 @@ public class UpdateCSVDirectory extends HttpServlet {
 		String message = "";
 		try {
 			updateFolder();
-		    message = "Folder update successfulget";
 		} catch (IOException e) {
 			message = e.getLocalizedMessage();
+			System.out.println(message);
 		}
-	      response.setContentType("text/html");
+	      response.setContentType("application/zip");
 
-	      // Actual logic goes here.
-	      PrintWriter out = response.getWriter();
-	      out.println("<h1>"+message+"</h1>");
+	      File file = updateFolder();
+	      System.out.println("File retrieved is located at: " + file.toString());
+	      FileInputStream fileIn = new FileInputStream(file);
+	      ServletOutputStream out = response.getOutputStream();
+	       
+	      byte[] outputByte = new byte[4096];
+	      //copy binary contect to output stream
+	      while(fileIn.read(outputByte, 0, 4096) != -1)
+	      {
+	      	out.write(outputByte, 0, 4096);
+	      }
+	      fileIn.close();
 	      out.flush();
+	      out.close();
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Set response content type
-		//update folder
-		 String message = "";
-		try {
-			updateFolder();
-		    message = "Folder update successfulpost";
-		} catch (IOException e) {
-			message = e.getLocalizedMessage();
-		}
-		
-
-	      response.setContentType("text/html");
-
-	      // Actual logic goes here.
-	      PrintWriter out = response.getWriter();
-	      out.println("<h1>"+message+"</h1>");
-	      out.flush();
+		System.out.println("Post executed");
+		doGet(request,response);
 	}
 	
-	private void updateFolder() throws IOException{
-		billHandler.flushCSV();
+	private File updateFolder() throws IOException{
+		return billHandler.flushCSV();
 	}
 }

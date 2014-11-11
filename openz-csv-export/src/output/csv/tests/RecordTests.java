@@ -1,7 +1,7 @@
 /**
  * 
  */
-package csv.tests;
+package output.csv.tests;
 
 import static org.junit.Assert.*;
 

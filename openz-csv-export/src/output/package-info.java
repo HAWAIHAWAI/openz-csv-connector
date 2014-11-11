@@ -5,4 +5,4 @@
  * @author Christian Gläser
  *
  */
-package csv;
+package output;

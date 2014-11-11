@@ -1,9 +1,11 @@
-package csv;
+package output;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import output.csv.CSVWriter;
 import database.BillUtil;
 import pojo.Bill;
 
@@ -31,9 +33,10 @@ public class BillHandler {
 		setFolder(folder);
 	}
 
-	public void flushCSV() throws IOException {
+	public File flushCSV() throws IOException {
 		CSVWriter csvWriter = new CSVWriter(getFolder(),"csv",";");
 		csvWriter.voidWriteFiles(getBills());
+		return csvWriter.getZip();
 	}
 
 	public String getFolder() {
