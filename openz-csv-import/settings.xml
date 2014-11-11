@@ -1,5 +1,5 @@
 <settings>
   <url>url</url>
   <folderLocation>folderLocation</folderLocation>
-  <updateInterval>15</updateInterval>
+  <updateInterval>150</updateInterval>
 </settings>
