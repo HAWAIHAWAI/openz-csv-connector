@@ -8,7 +8,7 @@ public class Settings {
 	
 	private String storageLocation;
 	private String folderLocation;
-	private String updateInterval;
+	private Integer updateInterval;
 	
 	public String getFolderLocation() {
 		return folderLocation;
@@ -22,10 +22,10 @@ public class Settings {
 	public void setStorageLocation(String storageLocation) {
 		this.storageLocation = storageLocation;
 	}
-	public String getUpdateInterval() {
+	public Integer getUpdateInterval() {
 		return updateInterval;
 	}
-	public void setUpdateInterval(String updateInterval) {
+	public void setUpdateInterval(Integer updateInterval) {
 		this.updateInterval = updateInterval;
 	}
 

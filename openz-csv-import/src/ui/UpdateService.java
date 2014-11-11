@@ -1,4 +1,4 @@
-package io;
+package ui;
 
 import java.awt.AWTException;
 import java.awt.Image;
