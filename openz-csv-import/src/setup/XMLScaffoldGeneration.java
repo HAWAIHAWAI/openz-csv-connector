@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
@@ -19,7 +21,12 @@ public class XMLScaffoldGeneration {
 	public String generateXMLScaffold(){
 		Settings settings = new Settings();
 		settings.setFolderLocation("folderLocation");
-		settings.setURL("url");
+		try {
+			settings.setURL(new URL("http://www.example.com/enterserverlocationhere"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		settings.setUpdateInterval(15);
         XStream xStream = new XStream(new DomDriver());
         xStream.alias("settings", Settings.class);

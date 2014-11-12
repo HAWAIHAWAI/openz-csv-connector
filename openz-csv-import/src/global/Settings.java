@@ -1,12 +1,14 @@
 package global;
 
+import java.net.URL;
+
 /**
  * Globale Einstellungen für die Programinitalisierung
  * @author HAWAI
  */
 public class Settings {
 	
-	private String url;
+	private URL url;
 	private String folderLocation;
 	private Integer updateInterval;
 	
@@ -19,10 +21,10 @@ public class Settings {
 	public void setFolderLocation(String folderLocation) {
 		this.folderLocation = folderLocation;
 	}
-	public String getURL() {
+	public URL getURL() {
 		return url;
 	}
-	public void setURL(String url) {
+	public void setURL(URL url) {
 		this.url = url;
 	}
 	public Integer getUpdateInterval() {
