@@ -26,7 +26,6 @@ public class XMLScaffoldGeneration {
 	
 	/**
 	 * Default values
-	 * @throws MalformedURLException 
 	 */
 	public XMLScaffoldGeneration(){
 		try {
@@ -41,9 +40,9 @@ public class XMLScaffoldGeneration {
 	
 	/**
 	 * Custom values
-	 * @param url
-	 * @param updateInterval
-	 * @param folderLocation
+	 * @param url The url for creasting the XML scaffold
+	 * @param updateInterval The update interval in seconds
+	 * @param folderLocation The folder location 
 	 */
 	public XMLScaffoldGeneration(URL url, Integer updateInterval, File folderLocation){
 		this.url = url;
@@ -53,7 +52,7 @@ public class XMLScaffoldGeneration {
 	
 	/**
 	 * Generates the XML scaffold
-	 * @throws MalformedURLException 
+	 * @return A string with the generated XML file as content
 	 */
 	public String generateXMLScaffold(){
 		Settings settings = new Settings();
@@ -67,9 +66,9 @@ public class XMLScaffoldGeneration {
 	
     /**
      * Creates a XML scaffold with default values
-     * @param args 
-     * @throws UnsupportedEncodingException 
-     * @throws FileNotFoundException 
+     * @param args arguments for XMLScaffoldGeneration - currently none
+     * @throws UnsupportedEncodingException The character encoding is not supported
+     * @throws FileNotFoundException File path could not be opened
      */
     public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException
     {

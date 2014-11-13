@@ -23,8 +23,8 @@ public class FileOperations {
 	
 	/**
 	 * Deletes directory and all files included
-	 * @param directory
-	 * @return
+	 * @param directory The directory to delete
+	 * @return The result of the deletion attempt, true if successful, else false
 	 */
 	public static boolean deleteDirectory(File directory){
 	    if( directory.exists() ) {

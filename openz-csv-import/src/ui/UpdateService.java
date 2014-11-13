@@ -22,31 +22,6 @@ public class UpdateService {
 	Settings settings;
 
 	/**
-	 * @return
-	 * @throws IOException
-	 *             When file can't be read
-	 */
-	public void settingsInstantiation() throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(
-				"settings.xml"));
-
-		StringBuilder fileAsString = new StringBuilder();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			fileAsString.append(line);
-		}
-		reader.close();
-
-		XStream xstream = new XStream();
-		xstream.alias("settings", Settings.class);
-		settings = (Settings) xstream.fromXML(fileAsString.toString());
-		System.out.println("Settings: FolderLocation: "
-				+ settings.getFolderLocation() + ", url: " + settings.getURL()
-				+ ", updateInterval in seconds: "
-				+ settings.getUpdateInterval());
-	}
-
-	/**
 	 * @throws IOException
 	 *             When settings file can't be read
 	 */
@@ -98,6 +73,31 @@ public class UpdateService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Reads settings from File
+	 * @throws IOException
+	 *             When file can't be read
+	 */
+	public void settingsInstantiation() throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader(
+				"settings.xml"));
+
+		StringBuilder fileAsString = new StringBuilder();
+		String line;
+		while ((line = reader.readLine()) != null) {
+			fileAsString.append(line);
+		}
+		reader.close();
+
+		XStream xstream = new XStream();
+		xstream.alias("settings", Settings.class);
+		settings = (Settings) xstream.fromXML(fileAsString.toString());
+		System.out.println("Settings: FolderLocation: "
+				+ settings.getFolderLocation() + ", url: " + settings.getURL()
+				+ ", updateInterval in seconds: "
+				+ settings.getUpdateInterval());
 	}
 
 }

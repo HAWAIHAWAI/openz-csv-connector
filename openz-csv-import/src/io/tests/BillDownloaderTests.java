@@ -29,7 +29,7 @@ public class BillDownloaderTests {
 	Settings settings;
 	
 	/**
-	 * @throws MalformedURLException
+	 * @throws MalformedURLException URL is not in an accepted format. Use http://www.example.com/ressource as format
 	 */
 	@Before
 	public void setUp() throws MalformedURLException{
