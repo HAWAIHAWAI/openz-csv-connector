@@ -13,6 +13,11 @@ import global.Settings;
 import org.junit.Test;
 import org.zeroturnaround.zip.ZipUtil;
 
+/**
+ * Tests for Bill downloads
+ * @author cglaeser
+ *
+ */
 public class BillDownloaderTests {
 	
 	@Test
