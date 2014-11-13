@@ -1,5 +1,5 @@
 <settings>
-  <url>url</url>
+  <url>http://localhost:8080/openz-csv-export/Bills.zip</url>
   <folderLocation>folderLocation</folderLocation>
-  <updateInterval>150</updateInterval>
+  <updateInterval>15</updateInterval>
 </settings>

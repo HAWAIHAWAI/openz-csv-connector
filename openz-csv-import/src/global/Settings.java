@@ -8,30 +8,30 @@ import java.net.URL;
  */
 public class Settings {
 	
-	private URL url;
-	private String folderLocation;
-	private Integer updateInterval;
+	private static URL url;
+	private static String folderLocation;
+	private static Integer updateInterval;
 	
 	/**
 	 * @return the location of the folder where files should be unpacked
 	 */
-	public String getFolderLocation() {
+	public static String getFolderLocation() {
 		return folderLocation;
 	}
-	public void setFolderLocation(String folderLocation) {
-		this.folderLocation = folderLocation;
+	public static void setFolderLocation(String newFileLocation) {
+	    folderLocation = newFileLocation;
 	}
-	public URL getURL() {
+	public static URL getURL() {
 		return url;
 	}
-	public void setURL(URL url) {
-		this.url = url;
+	public static void setURL(URL newUrl) {
+		url = newUrl;
 	}
-	public Integer getUpdateInterval() {
+	public static Integer getUpdateInterval() {
 		return updateInterval;
 	}
-	public void setUpdateInterval(Integer updateInterval) {
-		this.updateInterval = updateInterval;
+	public static void setUpdateInterval(Integer newUpdateInterval) {
+		updateInterval = newUpdateInterval;
 	}
 
 }

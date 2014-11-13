@@ -22,7 +22,7 @@ public class XMLScaffoldGeneration {
 		Settings settings = new Settings();
 		settings.setFolderLocation("folderLocation");
 		try {
-			settings.setURL(new URL("http://www.example.com/enterserverlocationhere"));
+			settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -45,7 +45,6 @@ public class XMLScaffoldGeneration {
         PrintWriter writer = new PrintWriter("settings.xml", "UTF-8");
         writer.println(xmlScaffold.generateXMLScaffold());
         writer.close();
-
     }
 
 

@@ -10,17 +10,22 @@ import global.Settings;
 
 public class BillDownloader extends Thread{
 	
-	Settings settings;
 	File file;
 	
-	public BillDownloader(Settings settings, File file){
-		this.settings = settings;
-		this.file = file;
+	public BillDownloader(File file){
+				this.file = file;
 	}
 	
-	public void refreshBills(){
+	public void refreshBills() throws IOException{
 		
 		while(!this.isInterrupted()){
+			try {
+				this.sleep(Settings.getUpdateInterval());
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				this.interrupt();
+			}
+			getBills();
 			
 			
 			//TODO We need some good logic here to do the following
@@ -33,7 +38,7 @@ public class BillDownloader extends Thread{
 	}
 	
 	public File getBills() throws IOException{
-		URL url = settings.getURL();
+		URL url = Settings.getURL();
 		FileUtils.copyURLToFile(url, file);
 		System.out.println(file.getAbsolutePath());
 		return file;
