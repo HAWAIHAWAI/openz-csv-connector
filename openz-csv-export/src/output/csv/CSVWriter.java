@@ -28,7 +28,6 @@ public class CSVWriter {
    * Das Verzeichnis fuer die Dateien.
    */
   private File storageDirectory;
-  
   private String zipFilePath;
   
   /**
@@ -73,7 +72,7 @@ public class CSVWriter {
     setDirectory(directory, createDir);
     setFileExtension(fileExtension);
     setCSVDelimiter(csvDelimiter);
-    String zipfilepath = FileOperations.getProgramDirectory() + "/" + "bills.zip";
+    String zipfilepath = FileOperations.getProgramDirectory() + File.separator + "bills.zip";
 	//System.out.println("Zipfilepath: " + zipfilepath);
     setZipFilePath(zipfilepath);
   }
@@ -122,7 +121,7 @@ public class CSVWriter {
  * @throws IOException Wenn aktuelles Verzeichnis nicht gefunden werden kann
    */
   public void setDirectory(String path, boolean createIfNonexistent) throws IOException {
-	  storageDirectory = new File(FileOperations.getProgramDirectory() + "/" + path);
+	  storageDirectory = new File(FileOperations.getProgramDirectory() + File.separator + path);
 	  if (createIfNonexistent) {  
       storageDirectory.mkdirs();
       }

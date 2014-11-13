@@ -21,7 +21,7 @@ public class XMLScaffoldGeneration {
 	 */
 	public String generateXMLScaffold(){
 		Settings settings = new Settings();
-		settings.setFolderLocation(FileOperations.getProgramDirectory());
+		settings.setFolderLocation(new File(FileOperations.getProgramDirectory() + File.separator + "bills"));
 		try {
 			settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
 		} catch (MalformedURLException e) {

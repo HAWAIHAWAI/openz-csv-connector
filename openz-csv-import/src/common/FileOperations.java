@@ -20,5 +20,29 @@ public class FileOperations {
 		}
 	    return new File(currentDir);
 	}
+	
+	/**
+	 * Deletes directory and all files included
+	 * @param directory
+	 * @return
+	 */
+	public static boolean deleteDirectory(File directory){
+	    if( directory.exists() ) {
+	        File[] files = directory.listFiles();
+	        for(int i=0; i<files.length; i++) {
+	           if(files[i].isDirectory()) {
+	             deleteDirectory(files[i]);
+	           }
+	           else {
+	             files[i].delete();
+	           }
+	        }
+	      }
+	      return(directory.delete());
+	}
+	
+	public static boolean fileIsInDirectory(File file, File directory){
+		return new File(directory + File.separator + file).exists();
+	}
 
 }
