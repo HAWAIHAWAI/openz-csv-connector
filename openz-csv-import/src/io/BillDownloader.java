@@ -5,22 +5,25 @@ import java.io.IOException;
 import java.net.URL;
 
 import org.apache.commons.io.FileUtils;
+import org.zeroturnaround.zip.ZipUtil;
 
 import global.Settings;
 
 public class BillDownloader extends Thread{
 	
+	Settings settings;
 	File file;
 	
-	public BillDownloader(File file){
-				this.file = file;
+	public BillDownloader(Settings settings, File file){
+		this.settings = settings;		
+		this.file = file;
 	}
 	
 	public void refreshBills() throws IOException{
 		
 		while(!this.isInterrupted()){
 			try {
-				this.sleep(Settings.getUpdateInterval());
+				this.sleep(settings.getUpdateInterval());
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				this.interrupt();
@@ -38,9 +41,13 @@ public class BillDownloader extends Thread{
 	}
 	
 	public File getBills() throws IOException{
-		URL url = Settings.getURL();
+		URL url = settings.getURL();
 		FileUtils.copyURLToFile(url, file);
 		System.out.println(file.getAbsolutePath());
 		return file;
+	}
+	
+	private void refreshBillFolder() {
+		ZipUtil.unpack(file, settings.getFolderLocation());
 	}
 }

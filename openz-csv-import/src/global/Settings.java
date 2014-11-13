@@ -1,5 +1,6 @@
 package global;
 
+import java.io.File;
 import java.net.URL;
 
 /**
@@ -8,29 +9,29 @@ import java.net.URL;
  */
 public class Settings {
 	
-	private static URL url;
-	private static String folderLocation;
-	private static Integer updateInterval;
+	private URL url;
+	private File folderLocation;
+	private Integer updateInterval;
 	
 	/**
 	 * @return the location of the folder where files should be unpacked
 	 */
-	public static String getFolderLocation() {
+	public File getFolderLocation() {
 		return folderLocation;
 	}
-	public static void setFolderLocation(String newFileLocation) {
+	public void setFolderLocation(File newFileLocation) {
 	    folderLocation = newFileLocation;
 	}
-	public static URL getURL() {
+	public URL getURL() {
 		return url;
 	}
-	public static void setURL(URL newUrl) {
+	public void setURL(URL newUrl) {
 		url = newUrl;
 	}
-	public static Integer getUpdateInterval() {
+	public Integer getUpdateInterval() {
 		return updateInterval;
 	}
-	public static void setUpdateInterval(Integer newUpdateInterval) {
+	public void setUpdateInterval(Integer newUpdateInterval) {
 		updateInterval = newUpdateInterval;
 	}
 

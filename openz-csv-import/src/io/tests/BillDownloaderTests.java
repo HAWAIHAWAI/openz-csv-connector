@@ -22,8 +22,9 @@ public class BillDownloaderTests {
 	
 	@Test
 	public void DownloadFile() throws IOException{
-		Settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
-		BillDownloader bd = new BillDownloader(new File("bills.zip"));
+		Settings settings = new Settings();
+		settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
+		BillDownloader bd = new BillDownloader(settings, new File("bills.zip"));
 		File file = bd.getBills();
 		assertTrue(ZipUtil.containsEntry(file, "88E0E5CB1A294C6AA174708A587486EC.csv"));}
 }

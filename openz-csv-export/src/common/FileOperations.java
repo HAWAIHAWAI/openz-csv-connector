@@ -3,6 +3,10 @@ package common;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * @author Christian Gläser
+ *
+ */
 public class FileOperations {
 	
 	public static File getProgramDirectory(){

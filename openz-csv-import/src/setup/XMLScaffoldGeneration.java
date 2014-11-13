@@ -10,6 +10,7 @@ import java.net.URL;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
+import common.FileOperations;
 
 import global.Settings;
 
@@ -20,7 +21,7 @@ public class XMLScaffoldGeneration {
 	 */
 	public String generateXMLScaffold(){
 		Settings settings = new Settings();
-		settings.setFolderLocation("folderLocation");
+		settings.setFolderLocation(FileOperations.getProgramDirectory());
 		try {
 			settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
 		} catch (MalformedURLException e) {
