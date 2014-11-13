@@ -14,20 +14,51 @@ import common.FileOperations;
 
 import global.Settings;
 
+/**
+ * @author Christian Gläser
+ * Intended to generate the XML settings files
+ */
 public class XMLScaffoldGeneration {
 	
+	URL url;
+	Integer updateInterval;
+	File folderLocation;
+	
 	/**
-	 * Generates the XML scaffold 
+	 * Default values
+	 * @throws MalformedURLException 
 	 */
-	public String generateXMLScaffold(){
-		Settings settings = new Settings();
-		settings.setFolderLocation(new File(FileOperations.getProgramDirectory() + File.separator + "bills"));
+	public XMLScaffoldGeneration(){
 		try {
-			settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
+			url = new URL("http://localhost:8080/openz-csv-export/Bills.zip");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		updateInterval = 15;
+		folderLocation = new File(FileOperations.getProgramDirectory() + File.separator + "bills");
+	}
+	
+	/**
+	 * Custom values
+	 * @param url
+	 * @param updateInterval
+	 * @param folderLocation
+	 */
+	public XMLScaffoldGeneration(URL url, Integer updateInterval, File folderLocation){
+		this.url = url;
+		this.updateInterval = updateInterval;
+		this.folderLocation = folderLocation;
+	}
+	
+	/**
+	 * Generates the XML scaffold
+	 * @throws MalformedURLException 
+	 */
+	public String generateXMLScaffold(){
+		Settings settings = new Settings();
+		settings.setFolderLocation(folderLocation);
+		settings.setURL(url);
 		settings.setUpdateInterval(15);
         XStream xStream = new XStream(new DomDriver());
         xStream.alias("settings", Settings.class);
@@ -35,7 +66,7 @@ public class XMLScaffoldGeneration {
 	}
 	
     /**
-     * Creates a XML scaffold
+     * Creates a XML scaffold with default values
      * @param args 
      * @throws UnsupportedEncodingException 
      * @throws FileNotFoundException 
@@ -47,6 +78,4 @@ public class XMLScaffoldGeneration {
         writer.println(xmlScaffold.generateXMLScaffold());
         writer.close();
     }
-
-
 }

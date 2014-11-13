@@ -41,6 +41,11 @@ public class FileOperations {
 	      return(directory.delete());
 	}
 	
+	/**
+	 * @param file A File with a relative file path
+	 * @param directory A Directory with an absolute or relative path 
+	 * @return true if file is in directory
+	 */
 	public static boolean fileIsInDirectory(File file, File directory){
 		return new File(directory + File.separator + file).exists();
 	}
