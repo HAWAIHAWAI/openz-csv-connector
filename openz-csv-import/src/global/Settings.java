@@ -9,8 +9,12 @@ import java.net.URL;
  */
 public class Settings {
 	
+	/**
+	 * The url where the openz-export web site is located
+	 */
 	private URL url;
 	private File folderLocation;
+	private File xmlBillListName;
 	private Integer updateInterval;
 	
 	/**
@@ -49,5 +53,29 @@ public class Settings {
 	public void setUpdateInterval(Integer newUpdateInterval) {
 		updateInterval = newUpdateInterval;
 	}
+	
+	
+	/**
+	 * @return The name of the Bill list in the bill folder, e.g. bills.xml
+	 */
+	public File getXmlBillListName() {
+		return xmlBillListName;
+	}
+	
+	/**
+	 * @return The full path to the bill list e.g. C:\....\bills\bills.xml
+	 */
+	public File getFullBillListName(){
+		return new File(this.folderLocation + File.separator + this.xmlBillListName);
+	}
+	
+	/**
+	 * @param xmlBillListName The name of the bill list in the bill folder, e.g. bills.xml
+	 */
+	public void setXmlBillListName(File xmlBillListName) {
+		this.xmlBillListName = xmlBillListName;
+	}
+	
+	
 
 }

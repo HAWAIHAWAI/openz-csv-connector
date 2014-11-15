@@ -1,8 +1,12 @@
 package io;
 
+import io.xml.BillXML;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.TimerTask;
 
 import org.apache.commons.io.FileUtils;
@@ -12,14 +16,14 @@ import global.Settings;
 
 public class BillDownloader extends TimerTask{
 	
+	List<String> listOfBills;
 	Settings settings;
 	File filename;
-	Integer numberOfExecutions;
 	
 	public BillDownloader(Settings settings){
 		this.settings = settings;		
 		filename = new File("bills.zip");
-		numberOfExecutions = 0;
+		listOfBills = new ArrayList<String>();
 	}
 	
 	@Override
@@ -36,9 +40,10 @@ public class BillDownloader extends TimerTask{
 	 */
 	public void refreshBills() throws IOException{
 			getBills();
-			unpack();
+			unpack(settings.getFolderLocation());
+			listOfBills = BillXML.xmlToStringList(settings.getFullBillListName());
+			System.out.println("listOfBills: "+ listOfBills);
 			filename.delete();
-			++numberOfExecutions;
 	}
 	
 	public File getBills() throws IOException{
@@ -48,7 +53,12 @@ public class BillDownloader extends TimerTask{
 		return filename;
 	}
 	
-	private void unpack() {
-		ZipUtil.unpack(filename, settings.getFolderLocation());
+	public File getBill(){
+		return null;
 	}
+	
+	private void unpack(File folderLocation) {
+		ZipUtil.unpack(filename, folderLocation);
+	}
+	
 }

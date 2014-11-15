@@ -8,8 +8,8 @@ import java.util.List;
 
 import org.zeroturnaround.zip.ZipUtil;
 
+import output.xml.BillList;
 import common.FileOperations;
-
 import pojo.Bill;
 
 /**
@@ -149,7 +149,6 @@ public class CSVWriter {
     for (int i = 0; i < listOfBills.size(); i++) {
       createBillAsCSV(listOfBills.get(i));
     }
-    zipDirectory();
   }
 
   /**
@@ -182,7 +181,12 @@ public class CSVWriter {
   }
   
 
+	/**
+	 * Zips directory with an xml file of all files included
+	 */
 	private void zipDirectory() {
+	    //Add xml with file list to directory
+		BillList.convertBillsToXMLFile(storageDirectory);
 		ZipUtil.pack(storageDirectory, new File("bills.zip"));
 	}
 
@@ -195,6 +199,7 @@ public class CSVWriter {
 	}
 
 	public File getZip() {
+		zipDirectory();
 		return new File(zipFilePath);
 	}
 }

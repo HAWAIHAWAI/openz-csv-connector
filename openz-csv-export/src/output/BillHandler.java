@@ -1,11 +1,12 @@
 package output;
 
+import output.csv.CSVWriter;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import output.csv.CSVWriter;
 import database.BillUtil;
 import pojo.Bill;
 
@@ -47,7 +48,7 @@ public class BillHandler {
 		this.folder = folder;
 	}
 
-	public static List<Bill> getBills() {
+	public List<Bill> getBills() {
 		return BillUtil.getAllBills();
 	}
 	

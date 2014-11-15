@@ -1,6 +1,7 @@
 package ui;
 
 import global.Settings;
+import io.SettingsInstantiation;
 
 import java.awt.AWTException;
 import java.awt.Image;
@@ -26,7 +27,7 @@ public class UpdateService {
 	 *             When settings file can't be read
 	 */
 	public UpdateService() throws IOException {
-		settingsInstantiation();
+		settings = SettingsInstantiation.getSettings();
 
 		final TrayIcon trayIcon;
 
@@ -74,30 +75,4 @@ public class UpdateService {
 			e.printStackTrace();
 		}
 	}
-	
-	/**
-	 * Reads settings from File
-	 * @throws IOException
-	 *             When file can't be read
-	 */
-	public void settingsInstantiation() throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(
-				"settings.xml"));
-
-		StringBuilder fileAsString = new StringBuilder();
-		String line;
-		while ((line = reader.readLine()) != null) {
-			fileAsString.append(line);
-		}
-		reader.close();
-
-		XStream xstream = new XStream();
-		xstream.alias("settings", Settings.class);
-		settings = (Settings) xstream.fromXML(fileAsString.toString());
-		System.out.println("Settings: FolderLocation: "
-				+ settings.getFolderLocation() + ", url: " + settings.getURL()
-				+ ", updateInterval in seconds: "
-				+ settings.getUpdateInterval());
-	}
-
 }

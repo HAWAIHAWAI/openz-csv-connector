@@ -6,6 +6,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
+import output.csv.CSVWriter;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -20,11 +21,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 import common.FileOperations;
-
 import output.BillHandler;
-import output.csv.CSVWriter;
 import pojo.Bill;
 
+/**
+ * NOTIFICATION: FILE is used in import & export. Change with precaution!
+ * @author Florian Arfert
+ *
+ */
 public class TestCSVWriter {
   /**
    * CSVWriter, der bei den Testfaellen verwendet wird.
@@ -270,8 +274,9 @@ public class TestCSVWriter {
 	@Test
 	public void writeCSVFiles() throws IOException{
 		try {
+			BillHandler billHandler = new BillHandler();
 			CSVWriter csvWriter = new CSVWriter();
-			csvWriter.createBillsAsCSV(BillHandler.getBills());
+			csvWriter.createBillsAsCSV(billHandler.getBills());
 			
 			// Entferne Verzeichnis samt Inhalt
 		      File fDir = new File(csvWriter.getDirectory());
@@ -287,9 +292,10 @@ public class TestCSVWriter {
 	
 	@Test
 	public void openZip() throws IOException{
+		BillHandler billHandler = new BillHandler();
 		CSVWriter csvWriter = new CSVWriter();
 		try {
-			csvWriter.createBillsAsCSV(BillHandler.getBills());
+			csvWriter.createBillsAsCSV(billHandler.getBills());
 		} catch (IOException e) {
 			System.out.println(e);
 			fail();

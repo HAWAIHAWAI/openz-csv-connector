@@ -1,5 +1,6 @@
 <settings>
-  <url>http://localhost:8080/openz-csv-export/Bills.zip</url>
+  <url>http://localhost:8080/openz-csv-export</url>
   <folderLocation>C:\Users\HAWAI\git\openz-csv-connector\openz-csv-import\bills</folderLocation>
+  <xmlBillListName>bills.xml</xmlBillListName>
   <updateInterval>15</updateInterval>
 </settings>

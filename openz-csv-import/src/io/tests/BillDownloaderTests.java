@@ -1,7 +1,6 @@
 package io.tests;
 
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import io.BillDownloader;
 
 import java.io.File;
@@ -37,6 +36,7 @@ public class BillDownloaderTests {
 		settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
 		settings.setFolderLocation(new File(getProgramDirectory() + File.separator + "bills"));
 		settings.setUpdateInterval(1);
+		settings.setXmlBillListName(new File("bills.xml"));
 	}
 	
 	
