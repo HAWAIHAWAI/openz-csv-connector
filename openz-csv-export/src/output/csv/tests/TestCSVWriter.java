@@ -25,7 +25,6 @@ import output.BillHandler;
 import pojo.Bill;
 
 /**
- * NOTIFICATION: FILE is used in import & export. Change with precaution!
  * @author Florian Arfert
  *
  */
@@ -40,7 +39,7 @@ public class TestCSVWriter {
    * @throws Exception
    */
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     writer = null;
   }
 
@@ -138,7 +137,7 @@ public class TestCSVWriter {
 
   /**
    * Testet, ob eine einzelne Rechnung korrekt erstellt wird
- * @throws IOException 
+ * @throws IOException  If file cannot be written
    */
   @Test
   public void testCreateBillAsCSV() throws IOException {

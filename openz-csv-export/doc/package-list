@@ -5,4 +5,6 @@ output
 output.csv
 output.csv.tests
 output.web
+output.web.tests
+output.xml
 pojo

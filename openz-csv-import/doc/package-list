@@ -1,6 +1,8 @@
 common
 global
+global.tests
 io
 io.tests
+io.xml
 setup
 ui
