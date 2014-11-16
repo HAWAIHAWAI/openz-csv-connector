@@ -1,7 +1,5 @@
 /**
- * 
- */
-/**
+ * Output of CSV files
  * @author HAWAI
  *
  */

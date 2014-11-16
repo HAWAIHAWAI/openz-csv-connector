@@ -1,8 +1,5 @@
 /**
- * 
- */
-/**
- * @author Christian Gläser
- *
+ * Output of files
+ * @author cglaeser
  */
 package output;

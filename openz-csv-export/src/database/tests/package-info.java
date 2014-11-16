@@ -1,7 +1,5 @@
 /**
- * 
- */
-/**
+ * Database tests
  * @author HAWAI
  *
  */

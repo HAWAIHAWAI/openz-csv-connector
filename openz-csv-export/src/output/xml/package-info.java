@@ -1,7 +1,5 @@
 /**
- * 
- */
-/**
+ * Output to XML files
  * @author HAWAI
  *
  */

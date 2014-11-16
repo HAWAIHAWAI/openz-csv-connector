@@ -1,7 +1,5 @@
 /**
- * 
- */
-/**
+ * Output to the web
  * @author HAWAI
  *
  */
