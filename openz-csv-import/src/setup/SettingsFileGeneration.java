@@ -32,14 +32,14 @@ public class SettingsFileGeneration {
 	 */
 	public SettingsFileGeneration(){
 		try {
-			url = new URL("http://localhost:8080/openz-csv-export");
+			url = new URL("https://141.22.32.186/openz-csv-export/openz-csv-export");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		updateInterval = 15;
 		folderLocation = new File(FileOperations.getProgramDirectory() + File.separator + "bills");
-		xmlBillListName = new File("bills.xml");
+		xmlBillListName = new File("Bills.xml");
 	}
 	
 	/**
