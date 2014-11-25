@@ -1,6 +1,7 @@
 package ui;
 
 import global.Settings;
+import io.BillDownloader;
 import io.SettingsInstantiation;
 
 import java.awt.AWTException;
@@ -15,32 +16,39 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Timer;
 
 import com.thoughtworks.xstream.XStream;
 
 public class UpdateService {
 
 	Settings settings;
-
+	Timer time;
 	/**
 	 * @throws IOException
 	 *             When settings file can't be read
 	 */
+	
 	public UpdateService() throws IOException {
+		System.out.println("loading settings...");
 		settings = SettingsInstantiation.getSettings();
-
+		time = new Timer(true);
+		BillDownloader bd = new BillDownloader(settings);
+		time.scheduleAtFixedRate(bd,0,settings.getUpdateInterval()*1000);
+		startBillDownload();
 		final TrayIcon trayIcon;
 
 		if (SystemTray.isSupported()) {
 
 			SystemTray tray = SystemTray.getSystemTray();
 			Image image = Toolkit.getDefaultToolkit().getImage(
-					"images/palm.jpg");
+					"images/Connector-Icon.jpg");
 
 			ActionListener exitListener = new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					System.out.println("Exiting...");
 					System.exit(0);
+					time.cancel();
 				}
 			};
 
@@ -62,6 +70,10 @@ public class UpdateService {
 			System.err.println("System tray is currently not supported.");
 		}
 	}
+	
+	private void startBillDownload(){
+		
+	}
 
 	/**
 	 * @param args
@@ -70,6 +82,7 @@ public class UpdateService {
 	public static void main(String[] args) {
 		try {
 			UpdateService main = new UpdateService();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

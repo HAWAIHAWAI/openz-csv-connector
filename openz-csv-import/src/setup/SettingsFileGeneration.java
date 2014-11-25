@@ -24,6 +24,7 @@ public class SettingsFileGeneration {
 	Integer updateInterval;
 	File folderLocation;
 	File xmlBillListName;
+	File zipBillsName;
 	
 
 
@@ -32,7 +33,7 @@ public class SettingsFileGeneration {
 	 */
 	public SettingsFileGeneration(){
 		try {
-			url = new URL("https://141.22.32.186/openz-csv-export/openz-csv-export");
+			url = new URL("http://141.22.32.186/openz-csv-export");
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,6 +41,7 @@ public class SettingsFileGeneration {
 		updateInterval = 15;
 		folderLocation = new File(FileOperations.getProgramDirectory() + File.separator + "bills");
 		xmlBillListName = new File("Bills.xml");
+		zipBillsName = new File("Bills.zip");
 	}
 	
 	/**
@@ -48,11 +50,12 @@ public class SettingsFileGeneration {
 	 * @param updateInterval The update interval in seconds
 	 * @param folderLocation The folder location 
 	 */
-	public SettingsFileGeneration(URL url, Integer updateInterval, File folderLocation, File xmlBillListName){
+	public SettingsFileGeneration(URL url, Integer updateInterval, File folderLocation, File xmlBillListName, File zipBillsName){
 		this.url = url;
 		this.updateInterval = updateInterval;
 		this.folderLocation = folderLocation;
 		this.xmlBillListName = xmlBillListName;
+		this.zipBillsName = zipBillsName;
 	}
 	
 	/**
@@ -65,6 +68,7 @@ public class SettingsFileGeneration {
 		settings.setXmlBillListName(xmlBillListName);
 		settings.setURL(url);
 		settings.setUpdateInterval(15);
+		settings.setZipBillsName("Bills.zip");
         XStream xStream = new XStream(new DomDriver());
         xStream.alias("settings", Settings.class);
         return xStream.toXML(settings);

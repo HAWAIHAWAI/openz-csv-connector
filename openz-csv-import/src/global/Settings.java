@@ -15,6 +15,7 @@ public class Settings {
 	private URL url;
 	private File folderLocation;
 	private File xmlBillListName;
+	private String zipBillsName;
 	private Integer updateInterval;
 	
 	/**
@@ -74,6 +75,12 @@ public class Settings {
 	 */
 	public void setXmlBillListName(File xmlBillListName) {
 		this.xmlBillListName = xmlBillListName;
+	}
+	public String getZipBillsName() {
+		return zipBillsName;
+	}
+	public void setZipBillsName(String billZipName) {
+		this.zipBillsName = billZipName;
 	}
 	
 	

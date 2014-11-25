@@ -2,6 +2,8 @@ package common;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 /**
  * @author cglaeser
@@ -12,13 +14,10 @@ public class FileOperations {
 	
 	public static File getProgramDirectory(){
 		String currentDir = "";
-		try {
-			currentDir = new File(".").getCanonicalPath();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    return new File(currentDir);
+		Path currentRelativePath = Paths.get("");
+		currentDir = System.getProperty("user.dir");
+		System.out.println("Current relative path is: " + currentDir);
+		return new File(currentDir);
 	}
 	
 	/**

@@ -4,10 +4,15 @@ import io.xml.BillXML;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.TimerTask;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 
 import org.apache.commons.io.FileUtils;
 import org.zeroturnaround.zip.ZipUtil;
@@ -18,11 +23,11 @@ public class BillDownloader extends TimerTask{
 	
 	List<String> listOfBills;
 	Settings settings;
-	File filename;
+	File localFile;
 	
 	public BillDownloader(Settings settings){
 		this.settings = settings;		
-		filename = new File("bills.zip");
+		localFile = new File("bills.zip");
 		listOfBills = new ArrayList<String>();
 	}
 	
@@ -39,18 +44,34 @@ public class BillDownloader extends TimerTask{
 	 * Gets Bills and unpacks them to folder specified by settings 
 	 */
 	public void refreshBills() throws IOException{
-			getBills();
+		System.out.println("Bills refresh started");	
+		getBills();
 			unpack(settings.getFolderLocation());
 			listOfBills = BillXML.xmlToStringList(settings.getFullBillListName());
 			System.out.println("listOfBills: "+ listOfBills);
-			filename.delete();
+			localFile.delete();
 	}
 	
 	public File getBills() throws IOException{
-		URL url = settings.getURL();
-		FileUtils.copyURLToFile(url, filename);
-		System.out.println(filename.getAbsolutePath());
-		return filename;
+		URL url = new URL(settings.getURL() + "/" + settings.getZipBillsName());
+		//FileUtils.copyURLToFile(url, filename);
+		//usually only FileUtils.copyURLtoFile, but due to certificate problems the certificate used cannot be verified.
+		//Lengthy method start here
+		/*HttpsURLConnection httpsCon = (HttpsURLConnection) url.openConnection();  
+        httpsCon.setHostnameVerifier(new HostnameVerifier()  
+        {        
+        	@Override
+        	public boolean verify(String hostname, SSLSession session)  
+            {  
+                return true;  
+            }
+        });  
+        httpsCon.connect();  
+        InputStream is = httpsCon.getInputStream();  
+		FileUtils.copyInputStreamToFile(is, filename);*/
+		FileUtils.copyURLToFile(url, localFile);
+		System.out.println(localFile.getAbsolutePath());
+		return localFile;
 	}
 	
 	public File getBill(){
@@ -58,7 +79,7 @@ public class BillDownloader extends TimerTask{
 	}
 	
 	private void unpack(File folderLocation) {
-		ZipUtil.unpack(filename, folderLocation);
+		ZipUtil.unpack(localFile, folderLocation);
 	}
 	
 }

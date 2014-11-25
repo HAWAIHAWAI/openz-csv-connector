@@ -3,10 +3,13 @@ package io;
 import global.Settings;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 import com.thoughtworks.xstream.XStream;
+
+import common.FileOperations;
 
 public class SettingsInstantiation {
 	
@@ -18,9 +21,9 @@ public class SettingsInstantiation {
 	 *             When file can't be read
 	 */
 	public static Settings getSettings() throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(
-				"settings.xml"));
-
+		String path = FileOperations.getProgramDirectory() + File.separator +  "settings.xml";
+		System.out.println("Trying to read settings file from: " + path);
+		BufferedReader reader = new BufferedReader(new FileReader(path));
 		StringBuilder fileAsString = new StringBuilder();
 		String line;
 		while ((line = reader.readLine()) != null) {
