@@ -39,6 +39,8 @@ public class Bill implements Serializable{
 	/*** Belegnummer */
 	String invoiceNumber;
 	
+	String documentNumber;
+	
 	/** Datum */
 	String date;
 	
@@ -50,6 +52,7 @@ public class Bill implements Serializable{
 	
 	//PARAMETERS
 	public static final String PARAM_ID = "c_invoice_id";
+	public static final String PARAM_DOCNO = "documentno";
 	public static final String PARAM_AMOUNT = "grandtotal";
 	public static final String PARAM_DATE = "created";
 	public static final String PARAM_DESCRIPTION = "description";
@@ -67,6 +70,22 @@ public class Bill implements Serializable{
 	public void setInvoiceNumber(String invoiceNumber) {
 		this.invoiceNumber = invoiceNumber;
 	}
+	
+	/**
+	 * @return the documentNumber
+	 */
+	@Column(name=PARAM_DOCNO)
+	public String getDocumentNumber() {
+		return documentNumber;
+	}
+
+	/**
+	 * @param documentNumber the documentNumber to set
+	 */
+	public void setDocumentNumber(String documentNumber) {
+		this.documentNumber = documentNumber;
+	}
+
 	
 	@Column(name=PARAM_DATE)
 	public String getDate() {

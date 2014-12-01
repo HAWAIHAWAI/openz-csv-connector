@@ -165,7 +165,7 @@ public class CSVWriter {
     File csvFile = new File(storageDirectory + File.separator + bill.getInvoiceNumber() + "." + fileExtension);
     if (!csvFile.exists()) {
       writer = new BufferedWriter(new FileWriter(csvFile));
-      writer.write(bill.getInvoiceNumber() + csvDelimiter + bill.getDate() + csvDelimiter + bill.getBookingText() + csvDelimiter
+      writer.write(bill.getDocumentNumber() + csvDelimiter + bill.getDate() + csvDelimiter + bill.getBookingText() + csvDelimiter
       // Sollkonto
       + csvDelimiter
       // Sollkontoname
