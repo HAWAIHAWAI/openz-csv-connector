@@ -162,7 +162,7 @@ public class CSVWriter {
    * @throws IOException Fehler beim Dateisystem (Y_Y)
    */
   public void createBillAsCSV(Bill bill) throws IOException {
-    File csvFile = new File(storageDirectory + File.separator + bill.getInvoiceNumber() + "." + fileExtension);
+    File csvFile = new File(storageDirectory + File.separator + bill.getDocumentNumber() + "." + fileExtension);
     if (!csvFile.exists()) {
       writer = new BufferedWriter(new FileWriter(csvFile));
       writer.write(bill.getDocumentNumber() + csvDelimiter + bill.getDate() + csvDelimiter + bill.getBookingText() + csvDelimiter

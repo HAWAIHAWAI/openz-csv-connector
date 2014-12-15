@@ -35,6 +35,7 @@ public class BillHandler {
 	}
 
 	public File flushCSV() throws IOException {
+		common.FileOperations.deleteDirectory(new File(getFolder()));
 		CSVWriter csvWriter = new CSVWriter(getFolder(),"csv",";");
 		csvWriter.createBillsAsCSV(getBills());
 		return csvWriter.getZip();

@@ -115,7 +115,7 @@ public class Bill implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Bill [invoiceNumber=" + invoiceNumber + ", date=" + date
+		return "Bill [invoiceNumber=" + invoiceNumber + ", documentNumber= " + documentNumber + ", date=" + date
 				+ ", bookingText=" + bookingText + ", amount=" + amount + "]";
 	}
 }
