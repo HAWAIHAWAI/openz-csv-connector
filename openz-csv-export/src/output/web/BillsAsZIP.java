@@ -3,7 +3,6 @@ package output.web;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -20,7 +19,10 @@ import output.BillHandler;
 @WebServlet(description = "Update files in the CSV directory", urlPatterns = { "/Bills.zip" })
 public class BillsAsZIP extends HttpServlet {
 	
-	BillHandler billHandler;
+	/**
+	 * Required to flush.
+	 */
+	private BillHandler billHandler;
 
 	/**
 	 * 
@@ -76,6 +78,11 @@ public class BillsAsZIP extends HttpServlet {
 		doGet(request,response);
 	}
 	
+	/**
+	 * Method to update the directory / folder.
+	 * @return File with updated content.
+	 * @throws IOException
+	 */
 	private File updateFolder() throws IOException{
 		return billHandler.flushCSV();
 	}

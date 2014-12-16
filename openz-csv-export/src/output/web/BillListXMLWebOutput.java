@@ -2,8 +2,6 @@ package output.web;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.io.xml.DomDriver;
-
 import output.BillHandler;
 import output.xml.BillList;
-import pojo.Bill;
 
+/**
+ * Class for updating files in the CSV directory.
+ * 
+ * @author Chrisitan Gläser
+ *
+ */
 @WebServlet(description = "Update files in the CSV directory", urlPatterns = { "/Bills.xml" })
 public class BillListXMLWebOutput extends HttpServlet{
 	
@@ -25,6 +25,10 @@ public class BillListXMLWebOutput extends HttpServlet{
 	 * 
 	 */
 	private static final long serialVersionUID = -3963294382704114429L;
+	
+	/*
+	 * WOFÜR BENOETIGT?
+	 */
 	BillHandler billHandler;
 	
 	public BillListXMLWebOutput(){
