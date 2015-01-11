@@ -13,30 +13,27 @@ import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Timer;
-
-import com.thoughtworks.xstream.XStream;
 
 public class UpdateService {
 
 	/**
 	 * Settings for UpdateService.
 	 */
-	Settings settings;
-	
+	private Settings settings;
+
 	/**
 	 * Required for UpdateService to update the files in the specified folder.
+	 * 
 	 * @see {@link Settings} for settings of the program.
 	 */
-	Timer time;
-	
-	
+	private Timer time;
+
 	/**
-	 * Constructor for the update service.
-	 * Creates an UpdateService with the previously specfi
+	 * Constructor for the update service. Creates an UpdateService with the
+	 * previously specfi
+	 * 
 	 * @throws IOException
 	 *             When settings file can't be read
 	 */
@@ -45,7 +42,7 @@ public class UpdateService {
 		settings = SettingsInstantiation.getSettings();
 		time = new Timer(true);
 		BillDownloader bd = new BillDownloader(settings);
-		time.scheduleAtFixedRate(bd,0,settings.getUpdateInterval()*1000);
+		time.scheduleAtFixedRate(bd, 0, settings.getUpdateInterval() * 1000);
 		startBillDownload();
 		final TrayIcon trayIcon;
 
@@ -81,9 +78,10 @@ public class UpdateService {
 			System.err.println("System tray is currently not supported.");
 		}
 	}
-	
-	private void startBillDownload(){
-		
+
+	// UEBERFLUESSIG?
+	private void startBillDownload() {
+
 	}
 
 	/**
@@ -93,7 +91,7 @@ public class UpdateService {
 	public static void main(String[] args) {
 		try {
 			UpdateService main = new UpdateService();
-			
+
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

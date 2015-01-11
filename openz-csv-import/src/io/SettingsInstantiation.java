@@ -11,6 +11,11 @@ import com.thoughtworks.xstream.XStream;
 
 import common.FileOperations;
 
+/**
+ * Class for retrieving settings from a xml-file ("settings.xml").
+ * 
+ * @author cglaeser.
+ */
 public class SettingsInstantiation {
 
 	/**
@@ -20,9 +25,11 @@ public class SettingsInstantiation {
 	}
 
 	/**
-	 * Reads settings from the settings.xml and retrieves them as a Settings object.
-	 * @return Settings object with settings of the settings.xml. 
-	 * @throws IOException 
+	 * Reads settings from the settings.xml and retrieves them as a Settings
+	 * object.
+	 * 
+	 * @return Settings object with settings of the settings.xml.
+	 * @throws IOException
 	 */
 	public static Settings getSettings() throws IOException {
 		String path = FileOperations.getProgramDirectory() + File.separator

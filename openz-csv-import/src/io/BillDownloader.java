@@ -1,40 +1,40 @@
 package io;
 
+import global.Settings;
 import io.xml.BillXML;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.TimerTask;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLSession;
 
 import org.apache.commons.io.FileUtils;
 import org.zeroturnaround.zip.ZipUtil;
 
-import global.Settings;
-
+/**
+ * Class for "downloading" Bills from OpenZ and putting
+ * them as files in a folder.
+ * 
+ * @author cglaeser.
+ */
 public class BillDownloader extends TimerTask{
 	
 	/**
 	 * Bills as a list of Strings.
 	 */
-	List<String> listOfBills;
+	private List<String> listOfBills;
 	
 	/**
 	 * Settings of the BillDownloader.
 	 */
-	Settings settings;
+	private Settings settings;
 	
 	/**
 	 * File object for the zip.
 	 */
-	File localFile;
+	private File localFile;
 	
 	/**
 	 * Constructor for BillDownloader.
@@ -96,11 +96,6 @@ public class BillDownloader extends TimerTask{
 		FileUtils.copyURLToFile(url, localFile);
 		System.out.println(localFile.getAbsolutePath());
 		return localFile;
-	}
-	
-	/// UEBERFLUESSIG?
-	public File getBill(){
-		return null;
 	}
 	
 	/**

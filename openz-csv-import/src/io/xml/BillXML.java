@@ -2,17 +2,18 @@ package io.xml;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
+ * This class provides a method to retrieve the content
+ * of a xml file as a list of Strings.
+ * 
  * @author cglaeser
  *
  */

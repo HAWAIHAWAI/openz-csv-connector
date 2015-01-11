@@ -9,11 +9,15 @@ import org.junit.Test;
 import io.SettingsInstantiation;
 import global.SettingsValidator;
 
+/**
+ * Simple test class.
+ */
 public class SettingsTests {
-	
+
 	@Test
-	public void validateSettingsTest() throws IOException{
-		assertTrue(SettingsValidator.validateSettings(SettingsInstantiation.getSettings()));
+	public void validateSettingsTest() throws IOException {
+		assertTrue(SettingsValidator.validateSettings(SettingsInstantiation
+				.getSettings()));
 	}
 
 }

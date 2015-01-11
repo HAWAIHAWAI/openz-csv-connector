@@ -15,35 +15,36 @@ import common.FileOperations;
 import global.Settings;
 
 /**
- * @author Christian Gläser
  * Intended to generate the XML settings files
+ * 
+ * @author Christian Gläser
  */
 public class SettingsFileGeneration {
 	
 	/**
 	 * Url for the web interface.
 	 */
-	URL url;
+	private URL url;
 	
 	/**
 	 * Update interval in seconds.
 	 */
-	Integer updateInterval;
+	private Integer updateInterval;
 	
 	/**
 	 * Location of the folder.
 	 */
-	File folderLocation;
+	private File folderLocation;
 	
 	/**
 	 * File object for the bills.xml
 	 */
-	File xmlBillListName;
+	private File xmlBillListName;
 	
 	/**
 	 * File object for the zipped.bills.
 	 */
-	File zipBillsName;
+	private File zipBillsName;
 	
 
 	/**

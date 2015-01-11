@@ -25,7 +25,7 @@ import static common.FileOperations.*;
  */
 public class BillDownloaderTests {
 	
-	Settings settings;
+	private Settings settings;
 	
 	/**
 	 * @throws MalformedURLException URL is not in an accepted format. Use http://www.example.com/ressource as format

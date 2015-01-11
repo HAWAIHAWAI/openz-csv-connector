@@ -1,7 +1,5 @@
 package common;
 
-import java.io.File;
-import java.io.IOException;
 
 /**
  * Class for file operations.
