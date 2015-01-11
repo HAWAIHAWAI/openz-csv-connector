@@ -12,16 +12,21 @@ import com.thoughtworks.xstream.XStream;
 import common.FileOperations;
 
 public class SettingsInstantiation {
-	
-	private SettingsInstantiation(){}
-	
+
 	/**
-	 * Reads settings from File
-	 * @throws IOException
-	 *             When file can't be read
+	 * Private - no instantiation.
+	 */
+	private SettingsInstantiation() {
+	}
+
+	/**
+	 * Reads settings from the settings.xml and retrieves them as a Settings object.
+	 * @return Settings object with settings of the settings.xml. 
+	 * @throws IOException 
 	 */
 	public static Settings getSettings() throws IOException {
-		String path = FileOperations.getProgramDirectory() + File.separator +  "settings.xml";
+		String path = FileOperations.getProgramDirectory() + File.separator
+				+ "settings.xml";
 		System.out.println("Trying to read settings file from: " + path);
 		BufferedReader reader = new BufferedReader(new FileReader(path));
 		StringBuilder fileAsString = new StringBuilder();
@@ -38,7 +43,7 @@ public class SettingsInstantiation {
 				+ settings.getFolderLocation() + ", url: " + settings.getURL()
 				+ ", updateInterval in seconds: "
 				+ settings.getUpdateInterval());
-		
+
 		return settings;
 	}
 

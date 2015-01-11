@@ -18,6 +18,12 @@ import com.thoughtworks.xstream.io.xml.DomDriver;
  */
 public class BillXML {
 	
+	/**
+	 * Retrieves the content of a xml file as a list of Strings.
+	 * @param xmlFile The xml file, whose content shall be deliverd as a list of Strings.
+	 * @return Content of the xml file as a list of Strings.
+	 * @throws FileNotFoundException File not found...
+	 */
 	public static List<String> xmlToStringList(File xmlFile) throws FileNotFoundException{
 		XStream xstream = new XStream(new DomDriver());
 		xstream.alias("billNumber", String.class);

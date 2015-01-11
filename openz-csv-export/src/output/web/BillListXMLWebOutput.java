@@ -26,9 +26,6 @@ public class BillListXMLWebOutput extends HttpServlet{
 	 */
 	private static final long serialVersionUID = -3963294382704114429L;
 	
-	/*
-	 * WOFÜR BENOETIGT?
-	 */
 	BillHandler billHandler;
 	
 	public BillListXMLWebOutput(){

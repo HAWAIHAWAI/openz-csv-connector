@@ -8,22 +8,26 @@ import org.apache.commons.io.IOUtils;
 
 public class SettingsValidator {
 	
+	/**
+	 * Private - no instantiation
+	 */
 	private SettingsValidator(){
 		
 	}
 	
 	/**
-	 * @param settings
-	 * @return true if all settings are correct
+	 * Checks if all settings are validate.
+	 * @param settings The settings which shall be checked.
+	 * @return true, if all settings are correct. Else false.
 	 */
 	public static boolean validateSettings(Settings settings){
 		return validateURLLocation(settings);
 	}
 	
 	/**
-	 * If the openz-export-location is correctly set, this method returns true
-	 * @param settings
-	 * @return 
+	 * Checks if the openz-export-location is correctly set.
+	 * @param settings Settings with the openz-export-location.
+	 * @return True, if correctly set. Else false.
 	 */
 	public static boolean validateURLLocation(Settings settings){
 		try {

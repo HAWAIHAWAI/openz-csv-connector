@@ -1,5 +1,6 @@
 /**
- * Globale Einstellungen fuer die Programminitialisierung
+ * 
+ * Global settings for initialization.
  * @author HAWAI
  *
  */

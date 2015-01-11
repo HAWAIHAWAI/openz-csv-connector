@@ -12,6 +12,10 @@ import java.nio.file.Paths;
  */
 public class FileOperations {
 	
+	/**
+	 * Retrieves the directory of the program as file-object.
+	 * @return program-directory as file object.
+	 */
 	public static File getProgramDirectory(){
 		String currentDir = "";
 		Path currentRelativePath = Paths.get("");
@@ -41,6 +45,7 @@ public class FileOperations {
 	}
 	
 	/**
+	 * Checks if a file exists in a specified directoy.
 	 * @param file A File with a relative file path
 	 * @param directory A Directory with an absolute or relative path 
 	 * @return true if file is in directory

@@ -21,16 +21,34 @@ import global.Settings;
 
 public class BillDownloader extends TimerTask{
 	
+	/**
+	 * Bills as a list of Strings.
+	 */
 	List<String> listOfBills;
+	
+	/**
+	 * Settings of the BillDownloader.
+	 */
 	Settings settings;
+	
+	/**
+	 * File object for the zip.
+	 */
 	File localFile;
 	
+	/**
+	 * Constructor for BillDownloader.
+	 * @param settings Settings for the BillDownloader.
+	 */
 	public BillDownloader(Settings settings){
 		this.settings = settings;		
 		localFile = new File("bills.zip");
 		listOfBills = new ArrayList<String>();
 	}
 	
+	/**
+	 * Refreshes the files in the bill folder.
+	 */
 	@Override
 	public void run() {
 		try {
@@ -39,9 +57,10 @@ public class BillDownloader extends TimerTask{
 			e.printStackTrace();
 		}	
 	}
+	
 	/**
+	 * Gets Bills and unpacks them to folder specified by settings.
 	 * @throws IOException
-	 * Gets Bills and unpacks them to folder specified by settings 
 	 */
 	public void refreshBills() throws IOException{
 		System.out.println("Bills refresh started");	
@@ -52,6 +71,11 @@ public class BillDownloader extends TimerTask{
 			localFile.delete();
 	}
 	
+	/**
+	 * Retrieves the zipped bills as file object.
+	 * @return File object with zipped biles.
+	 * @throws IOException
+	 */
 	public File getBills() throws IOException{
 		URL url = new URL(settings.getURL() + "/" + settings.getZipBillsName());
 		//FileUtils.copyURLToFile(url, filename);
@@ -74,10 +98,15 @@ public class BillDownloader extends TimerTask{
 		return localFile;
 	}
 	
+	/// UEBERFLUESSIG?
 	public File getBill(){
 		return null;
 	}
 	
+	/**
+	 * Unpacks the file object (a zip file) in the specified folder.
+	 * @param folderLocation Folder, where the files shall be stored.
+	 */
 	private void unpack(File folderLocation) {
 		ZipUtil.unpack(localFile, folderLocation);
 	}

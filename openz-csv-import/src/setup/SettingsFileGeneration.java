@@ -20,16 +20,34 @@ import global.Settings;
  */
 public class SettingsFileGeneration {
 	
+	/**
+	 * Url for the web interface.
+	 */
 	URL url;
+	
+	/**
+	 * Update interval in seconds.
+	 */
 	Integer updateInterval;
+	
+	/**
+	 * Location of the folder.
+	 */
 	File folderLocation;
+	
+	/**
+	 * File object for the bills.xml
+	 */
 	File xmlBillListName;
+	
+	/**
+	 * File object for the zipped.bills.
+	 */
 	File zipBillsName;
 	
 
-
 	/**
-	 * Default values
+	 * Constructor with default values.
 	 */
 	public SettingsFileGeneration(){
 		try {
@@ -45,7 +63,7 @@ public class SettingsFileGeneration {
 	}
 	
 	/**
-	 * Custom values
+	 * Constructor for custom values.
 	 * @param url The url for creasting the XML scaffold
 	 * @param updateInterval The update interval in seconds
 	 * @param folderLocation The folder location 

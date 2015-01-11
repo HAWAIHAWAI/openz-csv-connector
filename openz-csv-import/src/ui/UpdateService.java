@@ -22,13 +22,24 @@ import com.thoughtworks.xstream.XStream;
 
 public class UpdateService {
 
-	Settings settings;
-	Timer time;
 	/**
+	 * Settings for UpdateService.
+	 */
+	Settings settings;
+	
+	/**
+	 * Required for UpdateService to update the files in the specified folder.
+	 * @see {@link Settings} for settings of the program.
+	 */
+	Timer time;
+	
+	
+	/**
+	 * Constructor for the update service.
+	 * Creates an UpdateService with the previously specfi
 	 * @throws IOException
 	 *             When settings file can't be read
 	 */
-	
 	public UpdateService() throws IOException {
 		System.out.println("loading settings...");
 		settings = SettingsInstantiation.getSettings();
