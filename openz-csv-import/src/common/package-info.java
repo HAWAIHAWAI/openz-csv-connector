@@ -1,5 +1,6 @@
 /**
- * Base classes for File access
+ * Base classes for File access.
+ * 
  * @author cglaeser
  *
  */

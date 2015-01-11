@@ -16,6 +16,12 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.Timer;
 
+/**
+ * This class provides the update service for the openz-csv-import-export.
+ * 
+ * @author cglaeser
+ *
+ */
 public class UpdateService {
 
 	/**
@@ -32,7 +38,7 @@ public class UpdateService {
 
 	/**
 	 * Constructor for the update service. Creates an UpdateService with the
-	 * previously specfi
+	 * previously specified settings.
 	 * 
 	 * @throws IOException
 	 *             When settings file can't be read

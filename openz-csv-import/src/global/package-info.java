@@ -1,6 +1,7 @@
 /**
  * 
  * Global settings for initialization.
+ * 
  * @author HAWAI
  *
  */

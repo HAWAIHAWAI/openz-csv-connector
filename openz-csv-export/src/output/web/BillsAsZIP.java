@@ -18,7 +18,7 @@ import output.BillHandler;
  */
 @WebServlet(description = "Update files in the CSV directory", urlPatterns = { "/Bills.zip" })
 public class BillsAsZIP extends HttpServlet {
-	
+
 	/**
 	 * Required to flush.
 	 */
@@ -30,21 +30,23 @@ public class BillsAsZIP extends HttpServlet {
 	private static final long serialVersionUID = -8164342217548336731L;
 
 	/**
-     * Default constructor. 
-     */
-    public BillsAsZIP() {
-    	billHandler = new BillHandler();
-    }
+	 * Default constructor.
+	 */
+	public BillsAsZIP() {
+		billHandler = new BillHandler();
+	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	     System.out.println("Get executed");
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("Get executed");
 		// Set response content type
-		 //update folder
-		 
-		//update folder
+		// update folder
+
+		// update folder
 		String message = "";
 		try {
 			updateFolder();
@@ -52,38 +54,40 @@ public class BillsAsZIP extends HttpServlet {
 			message = e.getLocalizedMessage();
 			System.out.println(message);
 		}
-	      response.setContentType("application/zip");
+		response.setContentType("application/zip");
 
-	      File file = updateFolder();
-	      System.out.println("File retrieved is located at: " + file.toString());
-	      FileInputStream fileIn = new FileInputStream(file);
-	      ServletOutputStream out = response.getOutputStream();
-	       
-	      byte[] outputByte = new byte[4096];
-	      //copy binary contect to output stream
-	      while(fileIn.read(outputByte, 0, 4096) != -1)
-	      {
-	      	out.write(outputByte, 0, 4096);
-	      }
-	      fileIn.close();
-	      out.flush();
-	      out.close();
+		File file = updateFolder();
+		System.out.println("File retrieved is located at: " + file.toString());
+		FileInputStream fileIn = new FileInputStream(file);
+		ServletOutputStream out = response.getOutputStream();
+
+		byte[] outputByte = new byte[4096];
+		// copy binary contect to output stream
+		while (fileIn.read(outputByte, 0, 4096) != -1) {
+			out.write(outputByte, 0, 4096);
+		}
+		fileIn.close();
+		out.flush();
+		out.close();
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Post executed");
-		doGet(request,response);
+		doGet(request, response);
 	}
-	
+
 	/**
 	 * Method to update the directory / folder.
+	 * 
 	 * @return File with updated content.
 	 * @throws IOException
 	 */
-	private File updateFolder() throws IOException{
+	private File updateFolder() throws IOException {
 		return billHandler.flushCSV();
 	}
 }

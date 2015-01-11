@@ -35,15 +35,30 @@ public class Bill implements Serializable {
 	 */
 	private static final long serialVersionUID = 3112757207106932963L;
 
-	String invoiceNumber;
+	/**
+	 * Invoice number of the bill.
+	 */
+	private String invoiceNumber;
 
-	String documentNumber;
+	/**
+	 * Document number of the bill.
+	 */
+	private String documentNumber;
 
-	String date;
+	/**
+	 * Date of the bill.
+	 */
+	private String date;
 
-	String bookingText;
+	/**
+	 * Booking text of the bill.
+	 */
+	private String bookingText;
 
-	BigDecimal amount;
+	/**
+	 * Amount of the bill.
+	 */
+	private BigDecimal amount;
 
 	// PARAMETERS
 	public static final String PARAM_ID = "c_invoice_id";
@@ -157,7 +172,6 @@ public class Bill implements Serializable {
 		this.amount = amount;
 	}
 
-	
 	@Override
 	public String toString() {
 		return "Bill [invoiceNumber=" + invoiceNumber + ", documentNumber= "

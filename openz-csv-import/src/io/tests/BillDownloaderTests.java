@@ -19,63 +19,75 @@ import org.zeroturnaround.zip.ZipUtil;
 import static common.FileOperations.*;
 
 /**
- * Tests for Bill downloads
+ * Tests for Bill downloads.
+ * 
  * @author cglaeser
  *
  */
 public class BillDownloaderTests {
-	
+
 	private Settings settings;
-	
+
 	/**
-	 * @throws MalformedURLException URL is not in an accepted format. Use http://www.example.com/ressource as format
+	 * @throws MalformedURLException
+	 *             URL is not in an accepted format. Use
+	 *             http://www.example.com/ressource as format
 	 */
 	@Before
-	public void setUp() throws MalformedURLException{
+	public void setUp() throws MalformedURLException {
 		settings = new Settings();
-		settings.setURL(new URL("http://localhost:8080/openz-csv-export/Bills.zip"));
-		settings.setFolderLocation(new File(getProgramDirectory() + File.separator + "bills"));
+		settings.setURL(new URL(
+				"http://localhost:8080/openz-csv-export/Bills.zip"));
+		settings.setFolderLocation(new File(getProgramDirectory()
+				+ File.separator + "bills"));
 		settings.setUpdateInterval(1);
 		settings.setXmlBillListName(new File("bills.xml"));
 	}
-	
-	
+
 	@Test
-	public void downloadFile() throws IOException{
+	public void downloadFile() throws IOException {
 		BillDownloader bd = new BillDownloader(settings);
 		File file = bd.getBills();
-		assertTrue(ZipUtil.containsEntry(file, "88E0E5CB1A294C6AA174708A587486EC.csv"));
-		}
-	
+		assertTrue(ZipUtil.containsEntry(file,
+				"88E0E5CB1A294C6AA174708A587486EC.csv"));
+	}
+
 	@Test
-	public void unzipFile() throws IOException{
+	public void unzipFile() throws IOException {
 		BillDownloader bd = new BillDownloader(settings);
 		bd.refreshBills();
-		assertTrue(fileIsInDirectory(new File("88E0E5CB1A294C6AA174708A587486EC.csv"), settings.getFolderLocation()));
+		assertTrue(fileIsInDirectory(new File(
+				"88E0E5CB1A294C6AA174708A587486EC.csv"),
+				settings.getFolderLocation()));
 	}
-	
+
 	@Test
-	public void unzipMoreThanOnce() throws IOException{
+	public void unzipMoreThanOnce() throws IOException {
 		BillDownloader bd = new BillDownloader(settings);
-		for(int i=0;i<10;i++){bd.refreshBills();}
-		assertTrue(fileIsInDirectory(new File("88E0E5CB1A294C6AA174708A587486EC.csv"), settings.getFolderLocation()));
+		for (int i = 0; i < 10; i++) {
+			bd.refreshBills();
+		}
+		assertTrue(fileIsInDirectory(new File(
+				"88E0E5CB1A294C6AA174708A587486EC.csv"),
+				settings.getFolderLocation()));
 	}
-	
+
 	/**
-	 * @throws InterruptedException Timed execution example
+	 * @throws InterruptedException
+	 *             Timed execution example
 	 */
 	@Test
-	public void runBillDownloadAsTask() throws InterruptedException{
+	public void runBillDownloadAsTask() throws InterruptedException {
 		Timer time = new Timer();
 		BillDownloader bd = new BillDownloader(settings);
-		time.schedule(bd,settings.getUpdateInterval()*1000);
-		//Simulates running program
+		time.schedule(bd, settings.getUpdateInterval() * 1000);
+		// Simulates running program
 		Thread.sleep(10000);
 		time.cancel();
 	}
-	
+
 	@After
-	public void cleanUp(){
-		deleteDirectory(settings.getFolderLocation());		
+	public void cleanUp() {
+		deleteDirectory(settings.getFolderLocation());
 	}
 }

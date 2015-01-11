@@ -11,9 +11,10 @@ import java.net.URL;
 public class Settings {
 
 	/**
-	 * The url where the openz-export web site is located
+	 * The url where the openz-export web service is located
 	 */
 	private URL url;
+	
 	/**
 	 * File object with the folder where files should be unpacked.
 	 */

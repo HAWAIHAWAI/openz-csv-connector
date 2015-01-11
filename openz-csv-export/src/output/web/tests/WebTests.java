@@ -12,11 +12,11 @@ import output.web.BillListXMLWebOutput;
  *
  */
 public class WebTests {
-	
+
 	@Test
-	public void testXMLBillList(){
+	public void testXMLBillList() {
 		BillListXMLWebOutput bis = new BillListXMLWebOutput();
-		//System.out.println(bis.convertBillsToXML());
+		// System.out.println(bis.convertBillsToXML());
 	}
 
 }

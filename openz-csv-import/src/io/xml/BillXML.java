@@ -11,21 +11,26 @@ import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
 /**
- * This class provides a method to retrieve the content
- * of a xml file as a list of Strings.
+ * This class provides a method to retrieve the content of a xml file as a list
+ * of Strings.
  * 
  * @author cglaeser
  *
  */
 public class BillXML {
-	
+
 	/**
 	 * Retrieves the content of a xml file as a list of Strings.
-	 * @param xmlFile The xml file, whose content shall be deliverd as a list of Strings.
+	 * 
+	 * @param xmlFile
+	 *            The xml file, whose content shall be deliverd as a list of
+	 *            Strings.
 	 * @return Content of the xml file as a list of Strings.
-	 * @throws FileNotFoundException File not found...
+	 * @throws FileNotFoundException
+	 *             File not found...
 	 */
-	public static List<String> xmlToStringList(File xmlFile) throws FileNotFoundException{
+	public static List<String> xmlToStringList(File xmlFile)
+			throws FileNotFoundException {
 		XStream xstream = new XStream(new DomDriver());
 		xstream.alias("billNumber", String.class);
 		String xmlString = "";
@@ -36,9 +41,8 @@ public class BillXML {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//return null;
+		// return null;
 		return (List<String>) xstream.fromXML(xmlString);
 	}
-	
-	
+
 }
