@@ -64,7 +64,7 @@ public class Settings {
 	}
 
 	/**
-	 * Sets the url were the openz-export web site is located.
+	 * Sets the url were the openz-export web service is located.
 	 * 
 	 * @param newUrl
 	 *            A url in the form "http://www.example.com/resourceIdentifier"
