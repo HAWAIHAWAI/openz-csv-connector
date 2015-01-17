@@ -17,6 +17,7 @@ public class ProgramIdentifier extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
+	 * Constructor for the HttpServlet implementation.
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ProgramIdentifier() {
@@ -24,6 +25,7 @@ public class ProgramIdentifier extends HttpServlet {
 	}
 
 	/**
+	 * Name of the program as GET-response.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -36,6 +38,7 @@ public class ProgramIdentifier extends HttpServlet {
 	}
 
 	/**
+	 * Name of the program as POST-response.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

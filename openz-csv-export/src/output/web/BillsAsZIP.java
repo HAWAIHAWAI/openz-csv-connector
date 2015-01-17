@@ -37,6 +37,7 @@ public class BillsAsZIP extends HttpServlet {
 	}
 
 	/**
+	 * Bill objects as zipped csv-files for the GET-response.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -72,6 +73,7 @@ public class BillsAsZIP extends HttpServlet {
 	}
 
 	/**
+	 * Bill objects as zipped csv-files for the POST-response.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

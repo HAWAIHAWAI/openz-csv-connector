@@ -14,6 +14,10 @@ import global.SettingsValidator;
  */
 public class SettingsTests {
 
+	/**
+	 * Test to check if all settings are correct.
+	 * @throws IOException
+	 */
 	@Test
 	public void validateSettingsTest() throws IOException {
 		assertTrue(SettingsValidator.validateSettings(SettingsInstantiation

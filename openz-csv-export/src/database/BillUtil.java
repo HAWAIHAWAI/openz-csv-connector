@@ -28,8 +28,9 @@ public class BillUtil {
 				Bill.class);
 		System.out.println("Query" + query);
 		query.setParameter(Bill.PARAM_ID, billID);
-
-		return query.getSingleResult();
+		Bill bill = query.getSingleResult();
+		em.close();
+		return bill;
 	}
 
 	/**
@@ -42,7 +43,9 @@ public class BillUtil {
 		TypedQuery<Bill> query = em.createNamedQuery(Bill.FIND_BILLS,
 				Bill.class);
 		System.out.println("Query" + query);
-		return query.getResultList();
+		List<Bill> listBill = query.getResultList();
+		em.close();
+		return listBill;
 	}
 
 }

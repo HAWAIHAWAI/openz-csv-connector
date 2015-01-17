@@ -85,7 +85,7 @@ public class UpdateService {
 		}
 	}
 
-	// UEBERFLUESSIG?
+	// not required?
 	private void startBillDownload() {
 
 	}

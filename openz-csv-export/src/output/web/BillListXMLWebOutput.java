@@ -33,6 +33,7 @@ public class BillListXMLWebOutput extends HttpServlet {
 	}
 
 	/**
+	 * Converting Bill objects to XML for the GET-response.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -45,6 +46,7 @@ public class BillListXMLWebOutput extends HttpServlet {
 	}
 
 	/**
+	 * Converting Bill objects to XML for the POST-response.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

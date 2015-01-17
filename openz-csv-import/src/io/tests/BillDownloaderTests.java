@@ -29,6 +29,7 @@ public class BillDownloaderTests {
 	private Settings settings;
 
 	/**
+	 * Setup up for tests.
 	 * @throws MalformedURLException
 	 *             URL is not in an accepted format. Use
 	 *             http://www.example.com/ressource as format
@@ -44,6 +45,10 @@ public class BillDownloaderTests {
 		settings.setXmlBillListName(new File("bills.xml"));
 	}
 
+	/**
+	 * Checks if the downloaded file contains the specified .csv
+	 * @throws IOException
+	 */
 	@Test
 	public void downloadFile() throws IOException {
 		BillDownloader bd = new BillDownloader(settings);
@@ -52,6 +57,11 @@ public class BillDownloaderTests {
 				"88E0E5CB1A294C6AA174708A587486EC.csv"));
 	}
 
+	/**
+	 * Checks if the specified folder (configured in settings )
+	 * contains the csv-file after a refresh.
+	 * @throws IOException
+	 */
 	@Test
 	public void unzipFile() throws IOException {
 		BillDownloader bd = new BillDownloader(settings);
@@ -61,6 +71,11 @@ public class BillDownloaderTests {
 				settings.getFolderLocation()));
 	}
 
+	/**
+	 * Checks if a bill (mirrored as csv) is still in the
+	 * folder after a specified amount of refreshing calls.
+	 * @throws IOException
+	 */
 	@Test
 	public void unzipMoreThanOnce() throws IOException {
 		BillDownloader bd = new BillDownloader(settings);
@@ -73,6 +88,7 @@ public class BillDownloaderTests {
 	}
 
 	/**
+	 * Test if the running programm can be scheduled and cancelled.
 	 * @throws InterruptedException
 	 *             Timed execution example
 	 */
@@ -86,6 +102,9 @@ public class BillDownloaderTests {
 		time.cancel();
 	}
 
+	/**
+	 * Clean up after tests.
+	 */
 	@After
 	public void cleanUp() {
 		deleteDirectory(settings.getFolderLocation());
