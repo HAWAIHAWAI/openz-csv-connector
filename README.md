@@ -5,7 +5,7 @@ openz-csv-connector
 
 See
 
-Import Documentation [Import Documentation](https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-import/doc/index.html)
-[Export Documentation]:<https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-export/doc/index.html>
+[Import Documentation](https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-import/doc/index.html)
+[Export Documentation](https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-export/doc/index.html)
 
-For a web based documentation
+for web based documentation.
