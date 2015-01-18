@@ -45,7 +45,7 @@ public class FileOperations {
 	}
 
 	/**
-	 * Checks if a file exists in a specified directoy.
+	 * Checks if a file exists in a specified directory.
 	 * 
 	 * @param file
 	 *            A File with a relative file path
