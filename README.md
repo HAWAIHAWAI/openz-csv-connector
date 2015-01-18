@@ -3,9 +3,9 @@ openz-csv-connector
 
 openz-csv-connector
 
-Seeaa
+See
 
-[Import Documentation]:<https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-import/doc/index.html>
+Import Documentation [Import Documentation](https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-import/doc/index.html)
 [Export Documentation]:<https://cdn.rawgit.com/HAWAIHAWAI/openz-csv-connector/master/openz-csv-export/doc/index.html>
 
 For a web based documentation
