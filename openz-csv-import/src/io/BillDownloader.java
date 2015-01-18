@@ -63,7 +63,7 @@ public class BillDownloader extends TimerTask {
 	/**
 	 * Gets Bills and unpacks them to folder specified by settings.
 	 * 
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	public void refreshBills() throws IOException {
 		System.out.println("Bills refresh started");
@@ -78,7 +78,7 @@ public class BillDownloader extends TimerTask {
 	 * Retrieves the zipped bills as file object.
 	 * 
 	 * @return File object with zipped biles.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	public File getBills() throws IOException {
 		URL url = new URL(settings.getURL() + "/" + settings.getZipBillsName());

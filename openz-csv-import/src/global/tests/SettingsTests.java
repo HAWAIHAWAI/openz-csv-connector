@@ -16,7 +16,7 @@ public class SettingsTests {
 
 	/**
 	 * Test to check if all settings are correct.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	@Test
 	public void validateSettingsTest() throws IOException {

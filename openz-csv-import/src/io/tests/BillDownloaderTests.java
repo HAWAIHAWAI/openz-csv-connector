@@ -47,7 +47,7 @@ public class BillDownloaderTests {
 
 	/**
 	 * Checks if the downloaded file contains the specified .csv
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	@Test
 	public void downloadFile() throws IOException {
@@ -60,7 +60,7 @@ public class BillDownloaderTests {
 	/**
 	 * Checks if the specified folder (configured in settings )
 	 * contains the csv-file after a refresh.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	@Test
 	public void unzipFile() throws IOException {
@@ -74,7 +74,7 @@ public class BillDownloaderTests {
 	/**
 	 * Checks if a bill (mirrored as csv) is still in the
 	 * folder after a specified amount of refreshing calls.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	@Test
 	public void unzipMoreThanOnce() throws IOException {

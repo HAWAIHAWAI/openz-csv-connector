@@ -1,4 +1,5 @@
 common
+common.tests
 global
 global.tests
 io

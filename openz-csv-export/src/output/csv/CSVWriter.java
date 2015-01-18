@@ -170,7 +170,7 @@ public class CSVWriter {
 
 	/**
 	 * Returns the current directory.
-	 * 
+	 * @return String with canonical path of the directory. 
 	 * @throws IOException
 	 *             Thrown, if directory is not set or not correct.
 	 */
@@ -184,9 +184,9 @@ public class CSVWriter {
 	 * 
 	 * @param listOfBills
 	 *            List of bills.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 * 
-	 * @see {@link #createBillAsCSV(Bill)}
+	 * @see #createBillAsCSV(Bill)
 	 */
 	public void createBillsAsCSV(List<Bill> listOfBills) throws IOException {
 		System.out.println("voidWriteFiles - list Of Bills" + listOfBills);
@@ -201,6 +201,8 @@ public class CSVWriter {
 	 * file contains the invoice number, the billing date, the relevant posting
 	 * text and the billing amount. <br>
 	 * If the file already exists, the file won't be created again.
+	 * @param bill The bill, which shall be written as csv.
+	 * @throws IOException Error occurred during execution...
 	 */
 	public void createBillAsCSV(Bill bill) throws IOException {
 		File csvFile = new File(storageDirectory + File.separator

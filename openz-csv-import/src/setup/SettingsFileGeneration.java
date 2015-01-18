@@ -71,6 +71,8 @@ public class SettingsFileGeneration {
 	 *            The update interval in seconds
 	 * @param folderLocation
 	 *            The folder location
+	 * @param xmlBillListName Name of the xml bill list.
+	 * @param zipBillsName Name of zip-file containing the bills.
 	 */
 	public SettingsFileGeneration(URL url, Integer updateInterval,
 			File folderLocation, File xmlBillListName, File zipBillsName) {

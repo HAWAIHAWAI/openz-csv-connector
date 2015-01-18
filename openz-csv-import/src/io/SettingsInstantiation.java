@@ -29,7 +29,7 @@ public class SettingsInstantiation {
 	 * object.
 	 * 
 	 * @return Settings object with settings of the settings.xml.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	public static Settings getSettings() throws IOException {
 		String path = FileOperations.getProgramDirectory() + File.separator

@@ -33,8 +33,6 @@ public class TestCSVWriter {
 
 	/**
 	 * Setup before every test.
-	 * 
-	 * @throws Exception
 	 */
 	@Before
 	public void setUp() {
@@ -138,7 +136,7 @@ public class TestCSVWriter {
 	/**
 	 * Test for writing bills as files in a directory.
 	 * 
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	@Test
 	public void writeCSVFiles() throws IOException {
@@ -163,7 +161,7 @@ public class TestCSVWriter {
 	/**
 	 * Test
 	 * 
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	@Test
 	public void openZip() throws IOException {

@@ -50,7 +50,7 @@ public class BillHandler {
 	 * Returns a zip-file with the bills.
 	 * 
 	 * @return Zip-file with bills.
-	 * @throws IOException
+	 * @throws IOException Error occurred during execution...
 	 */
 	public File flushCSV() throws IOException {
 		common.FileOperations.deleteDirectory(new File(getDirectory()));
